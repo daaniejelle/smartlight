@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Bulb in Javascript</title>
+    <link href="/css/main.css" rel="stylesheet"/>
+    <link href="/css/menu.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="/text/javascript" src="js-source/testbulb.js"></script>
+    <script type="/text/javascript" src="js-source/my.js"></script>
+    <script type="/text/javascript" src="js-source/weather1.js"></script>
+</head>
+
+<body>
+
+<!-- start menu balk-->
+<div id="menu-nav">
+    <div id="navigation-bar">
+
+        <ul>
+            <li><a href="#"><span class id="Home">Home</span></a>
+            </li>
+            <li><a href="#"><span class id="Lights">Lights</span></a></li>
+            <li><a href="#"><span class id="Sprinkler">Sprinkler</span></a></li>
+            <li><a href="#"><span class id="tempx">Temperature</span></a></li>
+            <li><a href="#"><span class id="settings">Settings</span></a></li>
+        </ul>
+    </div>
+</div>
+<!-- end menu balk-->
+
+<p class="name">Hallo Danielle, </p>
+
+<table width="100`%" border="0" cellspacing="10" cellpadding="10">    <tbody>
+    <tr>
+        <th scope="col">
+            <!--start image floorplan-->
+            <img src="img/Floorplan.jpg" alt="floorplan" class="responsive" width="900px">
+            <p><p></p>
+            <!--end image floorplan-->
+
+        </th>
+        <th scope="col"><img src="/img/waether.png" alt="weather" class="responsive" width="300px">
+        </th>
+    </tr>
+    </tbody>
+</table>
+
+
+<!--start javascript weather-->
+
+<div class="bg"></div>
+<div>
+    <div id="description"></div>
+    <h1 id="temp"></h1>
+    <div id="location"></div>
+</div>
+<!--end javascript weather-->
+
+
+
+</p>
+<table width="100`%" border="0">
+    <tbody>
+    <tr>
+        <th scope="col"><font color="FFFFFF">Light livingroom&emsp;&emsp;</font>
+
+
+
+            <table id="lightTable">
+                <tr>
+                    <td>Id:</td>
+                    <td id="id"></td>
+                </tr>
+                <tr>
+                    <td>Location:</td>
+                    <td id="locationx"></td>
+                </tr>
+                <tr>
+                    <td>Color:</td>
+                    <td id="color"></td>
+                </tr>
+                <tr>
+                    <td>Wattage:</td>
+                    <td id=wattage"></td>
+                </tr>
+                <tr>
+                    <td>Status</td>
+                    <td id="isBulbState"></td>
+                </tr>
+
+                <tr>
+                    <td>Aan/uit:</td>
+                    <td id="isDirtyCounter"></td>
+                </tr>
+
+            </table>
+
+
+</body>
+</html>
+
+
+
+
+
+
+

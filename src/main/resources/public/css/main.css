@@ -1,0 +1,20 @@
+
+a {
+    color: red;
+}
+
+.name {
+font-size: 30px;
+color: antiquewhite;
+text-indent: 15px
+margin: 50px 25px 25px 50px;
+}
+
+button {
+    margin-right: 10px;
+}
+
+button.selected {
+    background-color: lightblue;
+}
+
