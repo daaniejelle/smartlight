@@ -13,10 +13,10 @@ public class GreetingController {
 
     private final LightBulb[] lightbulbs = {
             new LightBulb(1, "Living Room", "Soft White", "25 Watt", true),
-            new LightBulb(2, "Living Room","Soft Orange", "15 Watt", true),
-            new LightBulb(3, "Bedroom","Led", "40 Watt", true),
-            new LightBulb(4, "Living Room","Night Shift", "100 Watt", true),
-            new LightBulb(5, "Living Room","Morning view", "60 Watt", true),
+            new LightBulb(2, "Living Room", "Soft Orange", "15 Watt", true),
+            new LightBulb(3, "Bedroom", "Led", "40 Watt", true),
+            new LightBulb(4, "Living Room", "Night Shift", "100 Watt", true),
+            new LightBulb(5, "Living Room", "Morning view", "60 Watt", true),
     };
 
     private static final String template = "Hello, %s!";
@@ -28,13 +28,9 @@ public class GreetingController {
     }
 
     @GetMapping("/lightbulp")
-    public LightBulb lightbulb(@RequestParam(value = "id", defaultValue = "testing") String id) {
-        int parsedId = Integer.parseInt(id);
-
+    public LightBulb lightbulb(int id) {
         for (LightBulb lightBulb : lightbulbs) {
-            if (lightBulb.getId() == parsedId) {
-                return lightBulb;
-            }
+            return lightBulb;
         }
         return null;
     }
@@ -43,7 +39,6 @@ public class GreetingController {
     public LightBulb[] bulbs() {
         return bulbs();
     }
-
 
 
 //      @GetMapping("/updateBulp")

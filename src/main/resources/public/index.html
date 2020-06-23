@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
-    <title>Bulb in Javascript</title>
-    <link href="/css/main.css" rel="stylesheet"/>
-    <link href="/css/menu.css" rel="stylesheet"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="/text/javascript" src="js-source/testbulb.js"></script>
-    <script type="/text/javascript" src="js-source/my.js"></script>
-    <script type="/text/javascript" src="js-source/weather1.js"></script>
+    <title>Home Automation</title>
+    <link href="/css/main.css" rel="stylesheet" />
+    <link href="/css/menu.css" rel="stylesheet" />
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>-->
+    <script type="/javascript" src="js-source/weather.js"></script>
+    <script type="/javascript" src="js-source/slider.js"></script>
 </head>
 
 <body>
@@ -16,10 +17,8 @@
 <!-- start menu balk-->
 <div id="menu-nav">
     <div id="navigation-bar">
-
         <ul>
-            <li><a href="#"><span class id="Home">Home</span></a>
-            </li>
+            <li><a href="#"><span class id="Home">Home</span></a></li>
             <li><a href="#"><span class id="Lights">Lights</span></a></li>
             <li><a href="#"><span class id="Sprinkler">Sprinkler</span></a></li>
             <li><a href="#"><span class id="tempx">Temperature</span></a></li>
@@ -29,80 +28,53 @@
 </div>
 <!-- end menu balk-->
 
-<p class="name">Hallo Danielle, </p>
+<p class="name">Goede middag Danielle!</p>
 
-<table width="100`%" border="0" cellspacing="10" cellpadding="10">    <tbody>
-    <tr>
-        <th scope="col">
-            <!--start image floorplan-->
-            <img src="img/Floorplan.jpg" alt="floorplan" class="responsive" width="900px">
-            <p><p></p>
-            <!--end image floorplan-->
+<!--start image floorplan-->
+<img src="img/Floorplan.jpg" alt="floorplan" class="responsive">
+<!--end image floorplan-->
 
-        </th>
-        <th scope="col"><img src="/img/waether.png" alt="weather" class="responsive" width="300px">
-        </th>
-    </tr>
-    </tbody>
-</table>
+<p></p>
 
+<!--start wheater widget-->
+<a class="weatherwidget-io" href="https://forecast7.com/nl/51d185d96/herten/" data-label_1="HERTEN"
+   data-label_2="WEATHER" data-theme="original">Het weer in Roermond vandaag</a>
+<script>
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+</script>
+<!--end wheater widget-->
 
-<!--start javascript weather-->
+<p> </p>
 
-<div class="bg"></div>
-<div>
-    <div id="description"></div>
-    <h1 id="temp"></h1>
-    <div id="location"></div>
+<!--Start flex tabel-->
+<div class="flex-table">
+    <!-- [HEAD] -->
+    <div class="th cell1">Lamp in de slaapkamer
+        <p></p>
+
+        <!-- start Slider -->
+        <div class="slidecontainer">
+            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+            <p>Lichtsterkte: <span id="sliderVisualRound"></span></p>
+        </div>
+
+        <input id="numb">
+        <button type="button" onclick="myFunction()">Submit</button>
+
+        <p id="sliderEnterNumber"></p>
+        <!-- end Slider -->
 </div>
-<!--end javascript weather-->
 
+    <div class="th cell2">wat gaan we hier eens invullen</div>
+<div class="th cell3">Column 3</div>
 
+<!-- [ROWS] -->
+<div class="td cell1">Column 1</div>
+<div class="td cell2">Column 2</div>
+<div class="td cell3">Column 3</div>
+</div>
 
-</p>
-<table width="100`%" border="0">
-    <tbody>
-    <tr>
-        <th scope="col"><font color="FFFFFF">Light livingroom&emsp;&emsp;</font>
-
-
-
-            <table id="lightTable">
-                <tr>
-                    <td>Id:</td>
-                    <td id="id"></td>
-                </tr>
-                <tr>
-                    <td>Location:</td>
-                    <td id="locationx"></td>
-                </tr>
-                <tr>
-                    <td>Color:</td>
-                    <td id="color"></td>
-                </tr>
-                <tr>
-                    <td>Wattage:</td>
-                    <td id=wattage"></td>
-                </tr>
-                <tr>
-                    <td>Status</td>
-                    <td id="isBulbState"></td>
-                </tr>
-
-                <tr>
-                    <td>Aan/uit:</td>
-                    <td id="isDirtyCounter"></td>
-                </tr>
-
-            </table>
 
 
 </body>
 </html>
-
-
-
-
-
-
-
