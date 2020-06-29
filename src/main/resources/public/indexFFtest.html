@@ -6,10 +6,22 @@
     <title>Home Automation</title>
     <link href="/css/main.css" rel="stylesheet" />
     <link href="/css/menu.css" rel="stylesheet" />
-    <script type="javascript" src="/js-source/Slider.js"></script>
-    <script type="javascript" src="../js-source/oefenenMetReact.js"></script>
+    <link href="/css/fftest.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <script src="https://use.fontawesome.com/68cbe5c16f.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/styles.min.css">
+    <script src="dashboard.js"></script>
+    <script src="lightSensorControl.js"></script>
 
-    <!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script>-->
+    <script type="javascript" src="/js-source/myjs.js"></script>
+|   <script type="javascript" src="/js-source/weather.js"></script>
+    <script type="javascript" src="/js-source/slider.js"></script>
+    <script type="javascript" src="/js-source/oefenenMetReact.js"></script>
+
 
 </head>
 
@@ -50,51 +62,8 @@
 
 <p> </p>
 
-<!--Start flex tabel-->
-<div class="flex-table">
-    <!-- [HEAD] -->
-    <div class="th cell1">Lamp in de slaapkamer
-        <p></p>
-
-        <!-- start Slider -->
-        <div class="slidecontainer">
-            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-            <p>Lichtsterkte: <span id="sliderVisualRound"></span></p>
-        </div>
-
-        <input id="numb">
-        <button type="button" onclick="myFunction()">Submit</button>
-
-        <p id="sliderEnterNumber"></p>
-        <!-- end Slider -->
-
-        <img src="img/nice-bulb.png" class="responsive">
-</div>
-
-    <div class="th cell2">Vraag de status van de lamp op:
-        <p></p>
-        <form action="/lightbulb" method="get">
-
-        <input type="submit" value="Kies een locatie" name="bulbId">
-        <input id="bulbId" type="text" value="" name="id">
-    </form>
-        <img src="img/nice-bulb.png" class="responsive">
-    </div>
 
 
-    <div class="th cell3">
-Is de lamp aan of uit:
-    <p></p>
-
-        <img src="img/nice-bulb.png" class="responsive">
-
-</div>
-
-<!-- [ROWS] -->
-<div class="td cell1"> <div id="root"></div></div>
-<div class="td cell2"></div>
-<div class="td cell3"></div>
-</div>
 
 
 

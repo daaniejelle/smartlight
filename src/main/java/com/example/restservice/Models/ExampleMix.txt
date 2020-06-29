@@ -1,0 +1,46 @@
+//      @GetMapping("/updateBulp")
+//      public LightBulb updateBulb (LightBulb lightbulp){
+//          LightBulb myLightbulp = null;
+//           for (LightBulb x : lightbulbs) {
+//                if (x.getId() == lightbulb(updateBulb()).getId()) {
+//                    myLightbulp = x;
+//            }
+//       }
+
+
+//    @GetMapping("/isLightBulpDirty")
+//    public int isLightBulpDirty(@RequestParam(value = "id", defaultValue = "") String id) {
+//        int parsedId = Integer.parseInt(id);
+//        for (LightBulb lightBulb : lightbulbs) {
+//            if (lightBulb.getId() == parsedId) {
+//                return lightBulb.getIsDirtyCounter();
+//            }
+//        }
+//        return -1;
+//    }
+
+
+//    @GetMapping("/bulbs")
+//    public LightBulb[] bulbs() {
+//        return bulbs();
+//    }
+
+
+//      @GetMapping("/updateBulp")
+//      public LightBulb updateBulb (LightBulb lightbulp){
+//          LightBulb myLightbulp = null;
+//           for (LightBulb x : lightbulbs) {
+//                if (x.getId() == lightbulb(updateBulb()).getId()) {
+//                    myLightbulp = x;
+//            }
+//       }
+
+function action() {
+    var image = document.getElementById('bulb');
+    if (image.src.match("off")) {
+        image.src = "../img/light-on.jpg";
+    } else {
+        image.src = "../img/light-off.jpg";
+    }
+}
+// JavaScript Document
