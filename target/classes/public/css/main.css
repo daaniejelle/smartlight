@@ -1,0 +1,47 @@
+.name {
+font-size: initial0px;
+color: antiquewhite;
+text-indent: 15px;
+margin: 40px 25px 40px 50px;
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin:inherit;
+}
+
+.responsive {
+  width: 75%;
+  height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 80px;
+  }
+
+ .flex-table {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      /* Rows & cells */
+      div.th, div.td {
+        box-sizing: border-box;
+        width: 33.3%;
+        padding: 10px;
+      }
+      div.th {
+        font-weight: bold;
+      }
+      .cell1 {
+        background: #ffe4d1;
+      }
+      .cell2 {
+        background: #f1ffd1;
+      }
+      .cell3 {
+        background: #d1ffe6;
+      }

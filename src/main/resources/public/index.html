@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home Automation</title>
+    <link href="/css/main.css" rel="stylesheet" />
+    <link href="/css/menu.css" rel="stylesheet" />
+    <link href="/css/slider.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="../js-source/Slider.js"></script>
+    <script type="javascript" src="../js-source/oefenenMetReact.js"></script>
+
+</head>
+
+<body>
+
+<!-- start menu balk-->
+<div id="menu-nav">
+    <div id="navigation-bar">
+        <ul>
+            <li><a href="#"><span class id="Home">Home</span></a></li>
+            <li><a href="#"><span class id="Lights">Lights</span></a></li>
+            <li><a href="#"><span class id="Sprinkler">Sprinkler</span></a></li>
+            <li><a href="#"><span class id="Login">Login</span></a></li>
+            <li><a href="#"><span class id="settings">Settings</span></a></li>
+        </ul>
+    </div>
+</div>
+<!-- end menu balk-->
+
+<img src="img/img_avatar2.png" alt="Avatar" class="avatar" align="left">
+
+
+<p class="name">Goede middag Danielle!</p>
+
+<!--start image floorplan-->
+<img src="img/Floorplan.jpg" alt="floorplan" class="responsive">
+<!--end image floorplan-->
+
+<p></p>
+
+<!--start wheater widget-->
+
+<a class="weatherwidget-io" href="https://forecast7.com/nl/51d195d99/roermond/" data-label_1="Roermond" data-label_2="Weer" data-icons="Climacons Animated" data-days="5" data-theme="mountains" >Roermond Weer</a>
+<script>
+!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+</script>
+<!--end wheater widget-->
+
+<p> </p>
+
+<!--Start flex tabel-->
+<div class="flex-table">
+    <!-- [HEAD] -->
+    <div class="th cell1">Lamp in de slaapkamer
+        <p></p>
+
+        <!-- start Slider -->
+        <div class="slidecontainer">
+            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+            <p>Lichtsterkte: <span id="sliderVisualRound"></span></p>
+        </div>
+
+        <input id="numb">
+        <button type="button" onclick="myFunction()">Submit</button>
+
+        <p id="sliderEnterNumber"></p>
+        <!-- end Slider -->
+
+        <img src="img/nice-bulb.png" class="responsive">
+</div>
+
+    <div class="th cell2">Vraag de status van de lamp op:
+        <p></p>
+        <form action="/lightbulb" method="get">
+
+        <input type="submit" value="Kies een locatie" name="bulbId">
+        <input id="bulbId" type="text" value="" name="id">
+    </form>
+        <img src="img/nice-bulb.png" class="responsive">
+    </div>
+
+
+    <div class="th cell3">
+Is de lamp aan of uit:
+    <p></p>
+
+        <img src="img/nice-bulb.png" class="responsive">
+
+</div>
+
+<!-- [ROWS] -->
+<div class="td cell1"> <div id="root"></div></div>
+<div class="td cell2"></div>
+<div class="td cell3"></div>
+</div>
+
+
+
+
+</body>
+</html>

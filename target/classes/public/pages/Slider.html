@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Slider</title>
+
+    <script type="text/javascript" src="../js-source/Slider.js"></script>
+    <script type="javascript" src="../js-source/Slider.js"></script>
+
+    <script type="text/javascript" src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script type="text/javascript" src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+</head>
+
+<body>
+
+<Typography id="discrete-slider-always" gutterBottom>
+    Always visible
+</Typography>
+
+<div class="slidecontainer">
+    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+    <p><font color="000000"> Lichtsterkte: <span id="sliderVisualRound"></span></font></p>
+</div>
+
+<input id="numb">
+<button type="button" onclick="myFunction()">Submit</button>
+
+<p id="sliderEnterNumber"></p>
+
+
+
+<div id="target1"></div>
+
+
+</body>
+</html>
