@@ -15,34 +15,20 @@ public class GreetingController {
             new LightBulb(5, "Living Room", "Morning view", "60 Watt", true),
     };
 
-    @GetMapping("/lightbulp")
+    @GetMapping("/lightbulbs")
+    public LightBulb[] lightBulbs() {
+        return lightBulbs;
+    }
+
+    @GetMapping("/lightbulb")
     public LightBulb lightbulb(int id) {
         for (LightBulb lightBulb : lightBulbs) {
-            return lightBulb;
+            if (lightBulb.getId() == id) {
+                return lightBulb;
+            }
         }
         return null;
     }
-
-    @GetMapping("/lightbulbs")
-    public LightBulb[] lightBulbs() {
-        return lightBulbs();
-    }
-
-//    private static final String template = "Hello, %s!";
-//    private final AtomicLong counter = new AtomicLong();
-//
-//    @GetMapping("/greeting")
-//    public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-//        return new Greeting(counter.incrementAndGet(), String.format(template, name));
-//    }
-
-//    @GetMapping("/lightbulp")
-//    public LightBulb lightbulb(int id) {
-//        for (LightBulb lightBulb : lightbulbs) {
-//            return lightBulb;
-//        }
-//        return null;
-//    }
 }
 
 
