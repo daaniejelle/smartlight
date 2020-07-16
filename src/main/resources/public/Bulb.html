@@ -1,8 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>Untitled Document</title>
+    <meta charset="UTF-8">
+    <title>Test Bulp ophalen van de server</title>
 
     <link href="/css/main.css" rel="stylesheet" />
     <link href="/css/Bulb.css" rel="stylesheet" />
@@ -10,10 +10,10 @@
     <script type="text/javascript" src="js-source/Bulb.js"></script>
     <!--    <script type="text/javascript" src="js-source/Test.js"></script>-->
 </head>
-
 <body>
 
 <h1>Turn the light on and off</h1>
+
 
 <img src ="img/light-off.jpg" alt="light off" id="switch" onclick="change();">
 
@@ -29,15 +29,15 @@
     <p>Click on the button, and the input will be sent to a page on the server called "bulbs".</p>
 
     <br /><br /><br />
-
-    <img src="img/Floorplan-with-bulbs.png" usemap="#image-map" class="responsive">
-
-    <map name="image-map">
-        <area target="_self" alt="Slaapkamer" title="Slaapkamer" href="http://localhost:8080/bulb.html" coords="463,61,501,125" shape="rect">
-        <area target="_self" alt="Trap" title="Trap" href="/bulb2" coords="617,299,657,368" shape="rect">
-        <area target="_self" alt="Keuken" title="Keuken" href="/bulb3" coords="1114,98,1158,169" shape="rect">
-        <area target="_self" alt="WC" title="WC" href="/bulb4" coords="1398,253,1442,339" shape="rect">
-    </map>
+    <div id="floorplanContainer" style="position: relative;">
+        <img name="floorplan" src="img/Floorplan-with-bulbs.png" usemap="#image-map" class="responsive">
+    </div>
+<!--    <map name="image-map">-->
+<!--        <area target="_self" alt="Slaapkamer" title="Slaapkamer" href="http://localhost:8080/bulb.html" coords="463,61,501,125" shape="rect">-->
+<!--        <area target="_self" alt="Trap" title="Trap" href="/bulb2" coords="617,299,657,368" shape="rect">-->
+<!--        <area target="_self" alt="Keuken" title="Keuken" href="/bulb3" coords="1114,98,1158,169" shape="rect">-->
+<!--        <area target="_self" alt="WC" title="WC" href="/bulb4" coords="1398,253,1442,339" shape="rect">-->
+<!--    </map>-->
 
     <!--</form>-->
 
@@ -62,17 +62,6 @@
 
 
 
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

@@ -4,18 +4,17 @@ import com.example.restservice.Model.Bulb;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.awt.*;
-
 @RestController
 public class BulbController {
 
     private final Bulb[] bulbs = new Bulb[]{
-            new Bulb(1, false, Color.black, "Zwart", "slaapkamer"),
-            new Bulb(2, false, Color.white, "wit", "gang"),
-            new Bulb(3, false, Color.red, "wit", "badkamer"),
-            new Bulb(4, false, Color.white, "groen", "wc"),
-            new Bulb(5, false, Color.white, "wit", "zolder")
-
+            new Bulb(1, true, "white", "slaapkamer", 92, 31),
+            new Bulb(2, false, "soft", "slaapkamer", 374, 31),
+            new Bulb(3, true, "blue", "trap", 493, 325),
+            new Bulb(4, false, "clear", "keuken", 832, 49),
+            new Bulb(5, false, "soft white", "wc", 1109, 37),
+            new Bulb(6, false, "normal", "douche", 1212, 251),
+            new Bulb(7, true, "onmove", "outside", 606, -71),
     };
 
     @GetMapping("/bulbs")
@@ -27,6 +26,23 @@ public class BulbController {
     public Bulb bulb(int bulbId) {
         for (Bulb bulb : bulbs) {
             if (bulb.getId() == bulbId) {
+                return bulb;
+            }
+        }
+        return null;
+    }
+
+    //toggle zet de schakelaar aan of uit
+
+    @GetMapping("/setBulb")
+    public Bulb toggleBulb(int bulbId) {
+        for (Bulb bulb : bulbs) {
+            if (bulb.getId() == bulbId) {
+                if (bulb.isOff())
+                    bulb.turnOn();
+                else
+                    bulb.turnOff();
+
                 return bulb;
             }
         }

@@ -1,21 +1,21 @@
 package com.example.restservice.Model;
 
-import java.awt.Color;
-
 public class Bulb {
 
     private int bulbId;
     private boolean on;
-    //private Color color;
     private String colorName;
     private String location;
+    private int xPosition;
+    private int yPosition;
 
-    public Bulb(int id, boolean on, Color c, String cn, String location) {
+    public Bulb(int id, boolean on, String cn, String location, int xPosition, int yPosition) {
         this.bulbId = id;
         this.on = on;
-        //color = c;
         colorName = cn;
         this.location = location;
+        this.xPosition = xPosition;
+        this.yPosition = yPosition;
     }
 
     public int getId() {
@@ -33,14 +33,6 @@ public class Bulb {
     public boolean isOff() {
         return !on;
     }
-
-    //public Color getColor() {
-     //   return color;
-    //}
-
-    //public void setColor(Color c) {
-     //   color = c;
-    //}
 
     public String getcolorName() {
         return colorName;
@@ -65,6 +57,10 @@ public class Bulb {
     public void turnOff() {
         on = false;
     }
+
+    public int getxPosition () {return xPosition;}
+
+    public int getyPosition () {return yPosition;}
 
     public String toString() {
         String result;
