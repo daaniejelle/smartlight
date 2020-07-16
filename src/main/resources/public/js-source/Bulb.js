@@ -15,6 +15,14 @@ function change() {
 
 
 
+
+
+
+
+
+
+
+
 //Werkende bulb
 //var imageTracker = 'on';
 //function change() {

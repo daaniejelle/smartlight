@@ -8,8 +8,7 @@
     <link href="/css/menu.css" rel="stylesheet" />
     <link href="/css/slider.css" rel="stylesheet" />
 
-    <script type="text/javascript" src="../js-source/Slider.js"></script>
-    <script type="javascript" src="../js-source/oefenenMetReact.js"></script>
+    <script type="javascript" src="../js-source/Slider.js"></script>
 
 </head>
 
@@ -34,9 +33,7 @@
 
 <p class="name">Goede middag Danielle!</p>
 
-<!--start image floorplan-->
-<img src="img/Floorplan.jpg" alt="floorplan" class="responsive">
-<!--end image floorplan-->
+<img src="img/Floorplan-with-bulbs.png" alt="floorplan" class="responsive">
 
 <p></p>
 
@@ -53,7 +50,7 @@
 <!--Start flex tabel-->
 <div class="flex-table">
     <!-- [HEAD] -->
-    <div class="th cell1">Lamp in de slaapkamer
+    <div class="th cell1"><BR>Lamp in de slaapkamer
         <p></p>
 
         <!-- start Slider -->
@@ -68,25 +65,23 @@
         <p id="sliderEnterNumber"></p>
         <!-- end Slider -->
 
-        <img src="img/nice-bulb.png" class="responsive">
+        <img src="img/nice-bulb.png" class="responsive" id="image">
 </div>
 
-    <div class="th cell2">Vraag de status van de lamp op:
+    <div class="th cell2"><BR>Vraag de status van de lamp op:
         <p></p>
         <form action="/lightbulb" method="get">
 
         <input type="submit" value="Kies een locatie" name="bulbId">
         <input id="bulbId" type="text" value="" name="id">
     </form>
-        <img src="img/nice-bulb.png" class="responsive">
     </div>
 
 
-    <div class="th cell3">
+    <div class="th cell3"><BR>
 Is de lamp aan of uit:
     <p></p>
 
-        <img src="img/nice-bulb.png" class="responsive">
 
 </div>
 
