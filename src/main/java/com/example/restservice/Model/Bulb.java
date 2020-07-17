@@ -8,14 +8,16 @@ public class Bulb {
     private String location;
     private int xPosition;
     private int yPosition;
+    private boolean isDimmable;
 
-    public Bulb(int id, boolean on, String cn, String location, int xPosition, int yPosition) {
+    public Bulb(int id, boolean on, String cn, String location, int xPosition, int yPosition, boolean isDimmable) {
         this.bulbId = id;
         this.on = on;
         colorName = cn;
         this.location = location;
         this.xPosition = xPosition;
         this.yPosition = yPosition;
+        this.isDimmable = isDimmable;
     }
 
     public int getId() {
@@ -61,6 +63,14 @@ public class Bulb {
     public int getxPosition () {return xPosition;}
 
     public int getyPosition () {return yPosition;}
+
+    public boolean isDimmable() {
+        return isDimmable;
+    }
+
+    public void setDimmable(boolean dimmable) {
+        isDimmable = dimmable;
+    }
 
     public String toString() {
         String result;

@@ -3,15 +3,20 @@
 //hier moet je een id aan meegeven van het lampje
 //methode wat ie moet doen als hij van de server afkomt
 //hier is 1 de id van de bulb
-function change() {
-    var image = document.getElementById('switch');
-    var lightBulb = setBulbStatus(1, function(lightBulb) {
-        if (lightBulb.on) {
+
+function change(event){
+
+    var image = event.target;
+    var id = image.id
+    var lightBulb = setBulbStatus(id, function(lightBulb) {
+
+       if (lightBulb.on) {
             image.src ='img/bulb-on.png';
         }
         else {
             image.src ='img/bulb-off.png';
             }
+
         });
 }
 
@@ -50,6 +55,7 @@ function positionBulbs(){
             img.attr("id", bulb.id)
             img.attr("src", lightBulbSrc)
             img.css({top: bulb.yPosition, left: bulb.xPosition, position:'absolute', height: 65, width: 65});
+            img.on("click", change)
             floorPlan.append(img);
         });
     });
@@ -70,12 +76,12 @@ function fetchBulbs(okCode){
             });
 }
 
-// dit stukje coe wordt getoond als de hele pagina geladen is, dan roept hij de methode positionBulbs aan
+// dit stukje code wordt getoond als de hele pagina geladen is, dan roept hij de methode positionBulbs aan
 $( document ).ready(function() {
     positionBulbs();
 });
 
-// toggle zet pagina aan of uit
+// toggle zet lamp aan of uit
 function fetchBulbs(okCode){
     let url = new URL("/bulbs", document.baseURI);
 
@@ -85,6 +91,7 @@ function fetchBulbs(okCode){
         })
         .then((data) => {
             okCode(data);
+             console.log("toggle");
         },
             (error) => {
                 console.log(error);
