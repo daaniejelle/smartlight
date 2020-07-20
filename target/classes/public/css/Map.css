@@ -1,0 +1,48 @@
+body {
+	background-color: #34495e;
+}
+
+div#board {
+	position: relative;
+	margin-top: 400px;
+	width: 1024px;
+	height: 863px;
+	margin: auto;
+	background: url("../img/Room.png") no-repeat;
+}
+
+div#messageArea {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	color: rgb(83, 175, 19);
+}
+.on {
+	background: url("../bulb-on.png") no-repeat center center;
+}
+.off {
+	background: url("../bulb-off.png") no-repeat center center;
+}
+table {
+	border-spacing: 0px;
+	/* border-collapse: collapse; */
+	position: absolute;
+	left: 25px;
+	top: 0px;
+}
+td {
+	width: 94px;
+	height: 94px;
+}
+form {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	padding: 15px;
+	background-color: rgb(255, 255, 0);
+}
+form input {
+	background-color: rgb(255, 255, 255);
+	border-color: rgb(83, 175, 19);
+	font-size: 1em;
+}
