@@ -9,8 +9,9 @@ public class Bulb {
     private int xPosition;
     private int yPosition;
     private boolean isDimmable;
+    private int intensity;
 
-    public Bulb(int id, boolean on, String cn, String location, int xPosition, int yPosition, boolean isDimmable) {
+    public Bulb(int id, boolean on, String cn, String location, int xPosition, int yPosition, boolean isDimmable, int intensity) {
         this.bulbId = id;
         this.on = on;
         colorName = cn;
@@ -18,6 +19,7 @@ public class Bulb {
         this.xPosition = xPosition;
         this.yPosition = yPosition;
         this.isDimmable = isDimmable;
+        this.intensity = intensity;
     }
 
     public int getId() {
@@ -70,6 +72,14 @@ public class Bulb {
 
     public void setDimmable(boolean dimmable) {
         isDimmable = dimmable;
+    }
+
+    public int getIntensity() {
+        return intensity;
+    }
+
+    public void setIntensity(int intensity) {
+        this.intensity = intensity;
     }
 
     public String toString() {

@@ -13,6 +13,7 @@ public class GreetingController {
             new LightBulb(3, "Bedroom", "Led", "40 Watt", true),
             new LightBulb(4, "Living Room", "Night Shift", "100 Watt", true),
             new LightBulb(5, "Living Room", "Morning view", "60 Watt", true),
+
     };
 
     @GetMapping("/lightbulbs")

@@ -8,12 +8,19 @@
     <link href="/css/Bulb.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="js-source/Bulb.js"></script>
+    <script type="text/javascript" src="js-source/Slider.js"></script>
     <!--    <script type="text/javascript" src="js-source/Test.js"></script>-->
+    <link href="/css/Slider.css" rel="stylesheet" />
+
 </head>
 <body>
 
 <h1>Turn the light on and off</h1>
 
+<div class="container">
+    <img id="imageDimmer" src="img/light-off.jpg">
+    <input type="range" min="0" max="100" value="0" onmouseover="rangeOpacity(this.value)" onchange="rangeOpacity(this.value)">
+</div>
 
 <img src ="img/light-off.jpg" alt="light off" id="switch" onclick="change(id);">
 
@@ -30,7 +37,7 @@
 
     <br /><br /><br />
     <div id="floorplanContainer" style="position: relative;">
-        <img name="floorplan" src="img/Floorplan-with-bulbs.png" usemap="#image-map" class="responsive">
+        <img name="floorplan" src="img/Room.png" usemap="#image-map" class="responsive">
     </div>
 <!--    <map name="image-map">-->
 <!--        <area target="_self" alt="Slaapkamer" title="Slaapkamer" href="http://localhost:8080/bulb.html" coords="463,61,501,125" shape="rect">-->

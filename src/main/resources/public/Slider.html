@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Home</title>
+    <link href="/css/Slider.css" rel="stylesheet" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js-source/Slider.js"></script>
+
+</head>
+
+<body>
+
+
+<div class="container">
+    <img id="imageDimmer" src="img/light-off.jpg">
+    <input type="range" min="0" max="100" value="0" bulbClickHandler="rangeOpacity(this.value)">
+</div>
+
+<!--<div class="container">-->
+<!--    <img id="imageDimmer" src="img/light-off.jpg">-->
+<!--    <input type="range" min="0" max="100" value="0" onmouseover="rangeOpacity(this.value)" bulbClickHandler="rangeOpacity(this.value)">-->
+<!--</div>-->
+
+
+<br><br>
+<br>
+<br>
+
+
+<div id="floorplanContainer" style="position: relative;">
+    <img id="floormap" src="img/room.png" usemap="#image-map">
+</div>
+
+
+</body>
+</html>

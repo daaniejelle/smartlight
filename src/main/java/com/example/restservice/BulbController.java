@@ -8,14 +8,23 @@ import org.springframework.web.bind.annotation.RestController;
 public class BulbController {
 
     private final Bulb[] bulbs = new Bulb[]{
-            new Bulb(1, true, "white", "slaapkamer", 92, 31),
-            new Bulb(2, false, "soft", "slaapkamer", 374, 31),
-            new Bulb(3, true, "blue", "trap", 493, 325),
-            new Bulb(4, false, "clear", "keuken", 832, 49),
-            new Bulb(5, false, "soft white", "wc", 1109, 37),
-            new Bulb(6, false, "normal", "douche", 1212, 251),
-            new Bulb(7, true, "onmove", "outside", 606, -71),
+            new Bulb(1, true, "white", "slaapkamer", 92, 31, false, 0),
+            new Bulb(2, false, "soft", "slaapkamer", 374, 31, false, 0),
+            new Bulb(3, true, "blue", "trap", 493, 325, false, 0),
+            new Bulb(4, false, "clear", "keuken", 832, 49,false, 0),
+            new Bulb(5, false, "soft white", "wc", 1109, 37, false, 0),
+            new Bulb(6, false, "normal", "douche", 1212, 251, false, 0),
+            new Bulb(7, true, "onmove", "outside", 606, -71, false, 0),
+
+            new Bulb(8, true, "dimmable", "outside", 606, -227, true,50),
+            new Bulb(9, true, "dimmable", "outside", 606, -227, true,100),
     };
+
+
+//    private final Dimmer[] dimmerbulbs = new Dimmer[]{
+ //            new Dimmer(10,false, "white", "buiten", 500, 600, true),
+//            new Dimmer(11,false, "white", "buiten", 600, 700, true)
+//    };
 
     @GetMapping("/bulbs")
     public Bulb[] bulps() {
@@ -49,7 +58,3 @@ public class BulbController {
         return null;
     }
 }
-
-
-
-

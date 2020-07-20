@@ -20,6 +20,11 @@ function change(event){
         });
 }
 
+function rangeOpacity(value) {
+         var root = document.documentElement;
+         root.style.setProperty('--exp', (value/100))
+}
+
 function setBulbStatus(bulbId, okCode){
     let url = new URL("/setBulb", document.baseURI);
     url.searchParams.append("bulbId", bulbId);
@@ -91,7 +96,7 @@ function fetchBulbs(okCode){
         })
         .then((data) => {
             okCode(data);
-             console.log("toggle");
+//             console.log("toggle");
         },
             (error) => {
                 console.log(error);
