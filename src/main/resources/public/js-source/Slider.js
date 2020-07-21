@@ -68,7 +68,7 @@ function positionBulbs(){
             let img = $("<img>");
             img.attr("id", bulb.id)
             img.attr("src", lightBulbSrc)
-            img.css({top: bulb.yPosition, left: bulb.xPosition, position:'absolute', height: 65, width: 65});
+            img.css({top: bulb.yPosition, left: bulb.xPosition, position:'absolute', height: 60, width: 60});
             img.on("click", bulbOnOffHandler)
             if (bulb.isDimmable) {
             		img.addClass("dimmableBulb");
