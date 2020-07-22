@@ -15,33 +15,41 @@ function bulbOnOffHandler(event){
         });
 }
 
-//originele code die refereert naar de <div> in de html
-function rangeOpacity(value) {
-    var root = document.documentElement;
-    root.style.setProperty('--exp', (value/100))
-}
+//$(document).ready(function() {
+//  $('#contrastSlider').change(function(e) {
+//    var value = $(e.target).val();
+//
+//    $('#contrastFilter').css('opacity', value);
+//  });
+//});
 
+
+//originele code die refereert naar de <div> in de html
 //function rangeOpacity(value) {
-//    var bulb = isDimmible;
 //    var root = document.documentElement;
-//    if(bulb.isDimmible) {
-//        root.style.setProperty('--exp', (value/100))
-//        }
-//        else {
-//        return false
-//        }
+//    root.style.setProperty('--exp', (value/100))
 //}
 
+function rangeOpacity(value) {
+    var bulb = dimmible;
+    var root = document.documentElement;
+    if(bulb.dimmible) {
+        root.style.setProperty('--exp', (value/100))
+        }
+        else {
+        return false
+        }
+}
 
 
 //code daan
-
+//
 //function rangeOpacity(value) {
 //     var root = document.documentElement;
 //     //var id = image.id;
 //     var bulbDimmer = setBulbStatusDim(root, function(lightDimmer) {
 //
-//     if (bulb.isDimmible) {
+//     if (bulb.dimmible) {
 //          root.style.setProperty('--exp', (value/100))
 //     }
 //
@@ -62,11 +70,11 @@ function setBulbStatus(bulbId, okCode){
         })
 
         .then((data) => {
-            console.log(data)
+//            console.log(data)
             okCode(data);
         },
             (error) => {
-                console.error(error);
+//                console.error(error);
             });
 }
 
@@ -82,19 +90,24 @@ function positionBulbs(){
             img.attr("id", bulb.id)
             img.attr("src", lightBulbSrc)
             img.css({top: bulb.yPosition, left: bulb.xPosition, position:'absolute', height: 60, width: 60});
-            if (bulb.isDimmable) {
+
+
+            if (bulb.dimmible) {
             		img.addClass("dimmableBulb");
-            		img.on("click", bulbSelectHandler)
+            		img.on("click", bulbSelectHandler);
+            		img.function(rangeOpacity);
+            		img.css({opacity: 0.5});
             	}
+
             	else {
             		img.on("click", bulbOnOffHandler)
             	}
             floorPlan.append(img);
 
+
 function bulbSelectHandler(event){
 	// remove the selected class from the currently selected bulb
 	$(".dimmableBulb.selected").removeClass("selected");
-
 	// Add class to the bulb which is selected
 	$(event.target).addClass("selected");
 }

@@ -22,6 +22,10 @@ public class Bulb {
         this.intensity = intensity;
     }
 
+    public static void dimmerBulb(int id, int intensity) {
+
+     }
+
     public int getId() {
         return bulbId;
     }
