@@ -1,3 +1,8 @@
+.dimmableBulb {
+opacity: 0.3;
+}
+
+
 :root {
   --exp:1;
 }

@@ -16,28 +16,41 @@ function bulbOnOffHandler(event){
 }
 
 //originele code die refereert naar de <div> in de html
+function rangeOpacity(value) {
+    var root = document.documentElement;
+    root.style.setProperty('--exp', (value/100))
+}
+
 //function rangeOpacity(value) {
+//    var bulb = isDimmible;
 //    var root = document.documentElement;
-//    root.style.setProperty('--exp', (value/100))
+//    if(bulb.isDimmible) {
+//        root.style.setProperty('--exp', (value/100))
+//        }
+//        else {
+//        return false
+//        }
 //}
+
+
 
 //code daan
 
-function rangeOpacity(value) {
-     var root = document.documentElement;
-     //var id = image.id;
-     var bulbDimmer = setBulbStatusDim(root, function(lightDimmer) {
-
-     if (bulb.isDimmible) {
-          root.style.setProperty('--exp', (value/100))
-     }
-
-     else {
-         bulbOnOffHandler()
-     }
-
-        });
-}
+//function rangeOpacity(value) {
+//     var root = document.documentElement;
+//     //var id = image.id;
+//     var bulbDimmer = setBulbStatusDim(root, function(lightDimmer) {
+//
+//     if (bulb.isDimmible) {
+//          root.style.setProperty('--exp', (value/100))
+//     }
+//
+//     else {
+//         bulbOnOffHandler()
+//     }
+//
+//        });
+//}
 
 function setBulbStatus(bulbId, okCode){
     let url = new URL("/setBulb", document.baseURI);
@@ -69,7 +82,6 @@ function positionBulbs(){
             img.attr("id", bulb.id)
             img.attr("src", lightBulbSrc)
             img.css({top: bulb.yPosition, left: bulb.xPosition, position:'absolute', height: 60, width: 60});
-            img.on("click", bulbOnOffHandler)
             if (bulb.isDimmable) {
             		img.addClass("dimmableBulb");
             		img.on("click", bulbSelectHandler)
@@ -86,10 +98,6 @@ function bulbSelectHandler(event){
 	// Add class to the bulb which is selected
 	$(event.target).addClass("selected");
 }
-
-
-//<input  type = "button" onclick = "change()" value = "Turn light on/off">
-//<input type="range" min="0" max="100" value="0" onmouseover="rangeOpacity(this.value)" onchange="rangeOpacity(this.value)">
 
         });
     });
