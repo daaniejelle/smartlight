@@ -1,22 +1,130 @@
-'use strict';
-const { Component } = React;
-const { render } = ReactDOM;
+//turn the bulb on and off
+function bulbOnOffHandler(event){
 
-class Slider extends React.Component {
-    constructor(props){
-        super(props);
-    }
+    var image = event.target;
+    var id = image.id
+    var lightBulb = setBulbStatus(id, function(lightBulb) {
 
-render() {
-    return (
+       if (lightBulb.on) {
+            image.src ='img/bulb-on.png';
+        }
+        else {
+            image.src ='img/bulb-off.png';
+            }
 
-<Slider{
-  defaultValue={80}
-  getAriaValueText={valuetext}
-  aria-labelledby="discrete-slider-always"
-  step={10}
-  marks={marks}
-  valueLabelDisplay="on"}
-/>
+        });
+}
 
-ReactDOM.render(<Slider first="Hello" second="World!" />, document.getElementById('discrete-slider-always'));
+//originele code die refereert naar de <div> in de html
+//function rangeOpacity(value) {
+//    var root = document.documentElement;
+//    root.style.setProperty('--exp', (value/100))
+//}
+
+//code daan
+
+function rangeOpacity(value) {
+     var root = document.documentElement;
+     //var id = image.id;
+     var bulbDimmer = setBulbStatusDim(root, function(lightDimmer) {
+
+     if (bulb.isDimmible) {
+          root.style.setProperty('--exp', (value/100))
+     }
+
+     else {
+         bulbOnOffHandler()
+     }
+
+        });
+}
+
+function setBulbStatus(bulbId, okCode){
+    let url = new URL("/setBulb", document.baseURI);
+    url.searchParams.append("bulbId", bulbId);
+
+    fetch(url)
+        .then(response => {
+            return response.json();
+        })
+
+        .then((data) => {
+            console.log(data)
+            okCode(data);
+        },
+            (error) => {
+                console.error(error);
+            });
+}
+
+function positionBulbs(){
+    let floorPlan = $("#floorplanContainer")
+    let lightbulbOff = "img/bulb-off.png";
+    let lightbulbOn = "img/bulb-on.png";
+
+   fetchBulbs(function(bulbs){
+        bulbs.forEach(function(bulb){
+            let lightBulbSrc = bulb.on ? lightbulbOn : lightbulbOff;
+            let img = $("<img>");
+            img.attr("id", bulb.id)
+            img.attr("src", lightBulbSrc)
+            img.css({top: bulb.yPosition, left: bulb.xPosition, position:'absolute', height: 65, width: 65});
+            img.on("click", bulbOnOffHandler)
+            if (bulb.isDimmable) {
+            		img.addClass("dimmableBulb");
+            		img.on("click", bulbSelectHandler)
+            	}
+            	else {
+            		img.on("click", bulbOnOffHandler)
+            	}
+            floorPlan.append(img);
+
+function bulbSelectHandler(event){
+	// remove the selected class from the currently selected bulb
+	$(".dimmableBulb.selected").removeClass("selected");
+
+	// Add class to the bulb which is selected
+	$(event.target).addClass("selected");
+}
+
+
+//<input  type = "button" onclick = "change()" value = "Turn light on/off">
+//<input type="range" min="0" max="100" value="0" onmouseover="rangeOpacity(this.value)" onchange="rangeOpacity(this.value)">
+
+        });
+    });
+}
+
+function fetchBulbs(okCode){
+    let url = new URL("/bulbs", document.baseURI);
+
+    fetch(url)
+        .then(response => {
+            return response.json();
+        })
+        .then((data) => {
+            okCode(data);
+        },
+            (error) => {
+                console.log(error);
+            });
+}
+
+$( document ).ready(function() {
+    positionBulbs();
+});
+
+function fetchBulbs(okCode){
+    let url = new URL("/bulbs", document.baseURI);
+
+    fetch(url)
+        .then(response => {
+            return response.json();
+        })
+        .then((data) => {
+            okCode(data);
+        },
+            (error) => {
+                console.log(error);
+            });
+}

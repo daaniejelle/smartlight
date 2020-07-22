@@ -1,8 +1,6 @@
 //let sessionTimeout = nul;
 
-//hier moet je een id aan meegeven van het lampje
 //methode wat ie moet doen als hij van de server afkomt
-//hier is 1 de id van de bulb
 
 function change(event){
 
@@ -36,14 +34,14 @@ function setBulbStatus(bulbId, okCode){
         })
         //resultaat van de sever
         .then((data) => {
-            console.log("Before fetch")
+//            console.log("Before fetch")
             console.log(data)
             okCode(data);
         },
             (error) => {
                 console.error(error);
             });
-    console.log("After fetch")
+//    console.log("After fetch")
 }
 
 //zie ook code hieronder positionBulbs
