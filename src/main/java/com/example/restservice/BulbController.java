@@ -14,10 +14,10 @@ public class BulbController {
             new Bulb(4, false, "clear", "keuken", 832, 49,false, 0),
             new Bulb(5, false, "soft white", "wc", 1109, 37, false, 0),
             new Bulb(6, false, "normal", "douche", 1212, 251, true, 50),
-            new Bulb(7, true, "onmove", "outside", 606, -71, false, 0),
 
-            new Bulb(8, true, "dimmable", "outside", 606, -227, true,50),
-
+//            new Bulb(7, false, "onmove", "outside", 606, -71, false, 50),
+            new Bulb(9, false, "dimmable", "outside", 606, -200, false,0),
+            new Bulb(8, true, "dimmable", "outside", 606, -200, true,0.5),
 };
 
 

@@ -1,3 +1,52 @@
+//turn the bulb on and off
+//setbulbstatus na function geeft ie aan wat hij moet doen als het antwoord van de server komt
+
+function bulbOnOffHandler(event){
+    var image = event.target;
+    var id = image.id
+    var lightBulb = setBulbStatus(id, function(lightBulb) {
+
+       if (lightBulb.on) {
+            image.src ='img/bulb-on.png';
+        }
+        else {
+            image.src ='img/bulb-off.png';
+            }
+
+        });
+}
+
+//shor or hide slider
+    function toggle(event) {
+        var slide = document.getElementById('slide');
+        var image = event.target;
+        var id = image.id;
+
+        var lightBulb = setBulbStatus(id, function(slider) {
+
+        if (slide.style.display == 'block') {
+            slide.style.display = 'none';
+        }
+        else {
+            slide.style.display = 'block';
+             }
+
+        });
+}
+
+// slider tonen die hoort bij het losse image
+    function toggle(ele) {
+        var slide = document.getElementById('slide');
+        if (slide.style.display == 'block') {
+            slide.style.display = 'none';
+
+        }
+        else {
+            slide.style.display = 'block';
+        }
+    }
+
+//Switch all lights on or off = not defined yet
     function swap(argument) {
         var element = document.getElementById(argument);
         var attr_Name = element.getAttribute("src");
@@ -16,72 +65,14 @@
                 document.getElementById(argument).setAttribute("src", "img/light-off.jpg");
             }
         }
-    }
-
-
-
-//turn the bulb on and off
-//setbulbstatus na function geeft ie aan wat hij moet doen als het antwoord van de server komt
-function bulbOnOffHandler(event){
-
-    var image = event.target;
-    var id = image.id
-    var lightBulb = setBulbStatus(id, function(lightBulb) {
-
-       if (lightBulb.on) {
-            image.src ='img/bulb-on.png';
-        }
-        else {
-            image.src ='img/bulb-off.png';
-            }
-
-        });
 }
-
-//$(document).ready(function() {
-//  $('#contrastSlider').change(function(e) {
-//    var value = $(e.target).val();
-//
-//    $('#contrastFilter').css('opacity', value);
-//  });
-//});
-
 
 //originele code die refereert naar de <div> in de html
-//function rangeOpacity(value) {
-//    var root = document.documentElement;
-//    root.style.setProperty('--exp', (value/100))
-//}
-
 function rangeOpacity(value) {
-    var bulb = dimmible;
     var root = document.documentElement;
-    if(bulb.dimmible) {
-        root.style.setProperty('--exp', (value/100))
-        }
-        else {
-        return false
-        }
+    root.style.setProperty('--exp', (value/100))
 }
 
-
-//code daan
-//
-//function rangeOpacity(value) {
-//     var root = document.documentElement;
-//     //var id = image.id;
-//     var bulbDimmer = setBulbStatusDim(root, function(lightDimmer) {
-//
-//     if (bulb.dimmible) {
-//          root.style.setProperty('--exp', (value/100))
-//     }
-//
-//     else {
-//         bulbOnOffHandler()
-//     }
-//
-//        });
-//}
 
 //okCode code die uitgevoerd moet worden
 function setBulbStatus(bulbId, okCode){
@@ -91,16 +82,19 @@ function setBulbStatus(bulbId, okCode){
     fetch(url)
         .then(response => {
             return response.json();
+            console.log("see bulbs");
         })
-
         .then((data) => {
             console.log(data)
             okCode(data);
         },
             (error) => {
-//                console.error(error);
+            console.error(error);
             });
 }
+
+
+
 
 function positionBulbs(){
     let floorPlan = $("#floorplanContainer")
@@ -114,14 +108,23 @@ function positionBulbs(){
             let img = $("<img>");
             img.attr("id", bulb.id)
             img.attr("src", lightBulbSrc)
-            img.css({top: bulb.yPosition, left: bulb.xPosition, position:'absolute', height: 60, width: 60});
+            img.css({top: bulb.yPosition, left: bulb.xPosition, position:'absolute', height: 160, width: 160});
             img.on("src", swap);
 
             if (bulb.dimmable) {
-            		img.addClass("dimmableBulb");
+  		            //let lightBulbsection = bulb.dimmable block : none;
+  		            let section = $("<section>");
+  		            img.addClass("dimmableBulb");
             		img.on("click", bulbSelectHandler);
+            		img.css({height: 160, width: 160});
+            		img.css({opacity: bulb.intensity});
+            		 img.on("click", toggle);
+            		//function rangeOpacity(value)
+            		//section.value("valueInput");
+
             		//img.function(rangeOpacity);
-            		img.css({opacity: 0.5});
+            		//img.css({opacity: 0.5});
+            		//class.input(value="50", min="1", max="100");
             	}
 
             	else {
@@ -150,6 +153,7 @@ function fetchBulbs(okCode){
             return response.json();
         })
         .then((data) => {
+        console.log(data)
             okCode(data);
         },
             (error) => {
@@ -176,3 +180,42 @@ function fetchBulbs(okCode){
                 console.log(error);
             });
 }
+
+
+
+
+
+
+
+
+
+
+//function rangeOpacity(value) {
+//    var bulb = dimmable;
+//    var root = document.documentElement;
+//    if(bulb.dimmable) {
+//        root.style.setProperty('--exp', (value/100))
+//        }
+//        else {
+//        return false
+//        }
+//}
+
+
+//code daan
+//
+//function rangeOpacity(value) {
+//     var root = document.documentElement;
+//     //var id = image.id;
+//     var bulbDimmer = setBulbStatusDim(root, function(lightDimmer) {
+//
+//     if (bulb.dimmable) {
+//          root.style.setProperty('--exp', (value/100))
+//     }
+//
+//     else {
+//         bulbOnOffHandler()
+//     }
+//
+//        });
+//}

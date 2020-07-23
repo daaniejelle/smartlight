@@ -1,9 +1,3 @@
-
-#dimmableBulb {
-    opacity: 0.5;
-    width: 80px;
-}
-
 :root {
   --exp:1;
 }
