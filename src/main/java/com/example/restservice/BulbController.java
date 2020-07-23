@@ -26,6 +26,20 @@ public class BulbController {
         return bulbs;
     }
 
+    @GetMapping("/bulbIntensity")
+    public Bulb bulbintensity(int bulbId) {
+        for (Bulb bulb : bulbs) {
+                 if (bulb.getId() == bulbId) {
+                    if (bulb.isDimmable())
+                        return bulbintensity(bulbId);
+
+                    else
+                    return bulb;
+                }
+            }
+            return null;
+        }
+
     @GetMapping("/Bulb")
     public Bulb bulb(int bulbId) {
         for (Bulb bulb : bulbs) {
@@ -36,7 +50,7 @@ public class BulbController {
         return null;
     }
 
-    //toggle zet de schakelaar aan of uit
+    //toggle zet de schakelaar aan of uit op de server
 
     @GetMapping("/setBulb")
     public Bulb toggleBulb(int bulbId) {

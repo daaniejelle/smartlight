@@ -1,4 +1,27 @@
+    function swap(argument) {
+        var element = document.getElementById(argument);
+        var attr_Name = element.getAttribute("src");
+            attr_Name = attr_Name.split("/").pop();
+        if(argument =="lightOn"){
+            if(attr_Name == "light-on.jpg"){
+                document.getElementById(argument).setAttribute("src", "img/light-off.jpg");
+            }else{
+                document.getElementById(argument).setAttribute("src", "img/light-on.jpg");
+            }
+        }
+        else if(argument =="lightOff"){
+            if(attr_Name == "light-off.jpg"){
+                document.getElementById(argument).setAttribute("src", "img/light-on.jpg");
+            }else{
+                document.getElementById(argument).setAttribute("src", "img/light-off.jpg");
+            }
+        }
+    }
+
+
+
 //turn the bulb on and off
+//setbulbstatus na function geeft ie aan wat hij moet doen als het antwoord van de server komt
 function bulbOnOffHandler(event){
 
     var image = event.target;
@@ -60,6 +83,7 @@ function rangeOpacity(value) {
 //        });
 //}
 
+//okCode code die uitgevoerd moet worden
 function setBulbStatus(bulbId, okCode){
     let url = new URL("/setBulb", document.baseURI);
     url.searchParams.append("bulbId", bulbId);
@@ -70,7 +94,7 @@ function setBulbStatus(bulbId, okCode){
         })
 
         .then((data) => {
-//            console.log(data)
+            console.log(data)
             okCode(data);
         },
             (error) => {
@@ -83,6 +107,7 @@ function positionBulbs(){
     let lightbulbOff = "img/bulb-off.png";
     let lightbulbOn = "img/bulb-on.png";
 
+//functie wordt uitgevoerd als de respons van de server komt
    fetchBulbs(function(bulbs){
         bulbs.forEach(function(bulb){
             let lightBulbSrc = bulb.on ? lightbulbOn : lightbulbOff;
@@ -90,12 +115,12 @@ function positionBulbs(){
             img.attr("id", bulb.id)
             img.attr("src", lightBulbSrc)
             img.css({top: bulb.yPosition, left: bulb.xPosition, position:'absolute', height: 60, width: 60});
+            img.on("src", swap);
 
-
-            if (bulb.dimmible) {
+            if (bulb.dimmable) {
             		img.addClass("dimmableBulb");
             		img.on("click", bulbSelectHandler);
-            		img.function(rangeOpacity);
+            		//img.function(rangeOpacity);
             		img.css({opacity: 0.5});
             	}
 
@@ -103,6 +128,7 @@ function positionBulbs(){
             		img.on("click", bulbOnOffHandler)
             	}
             floorPlan.append(img);
+            console.log('bulbs')
 
 
 function bulbSelectHandler(event){
@@ -131,6 +157,7 @@ function fetchBulbs(okCode){
             });
 }
 
+//deze code wordt uitgevoerd als de hele pagina geladen is
 $( document ).ready(function() {
     positionBulbs();
 });
