@@ -9,9 +9,9 @@ public class Bulb {
     private int xPosition;
     private int yPosition;
     private boolean isDimmable;
-    private double intensity;
+    private int intensity;
 
-    public Bulb(int id, boolean on, String cn, String location, int xPosition, int yPosition, boolean isDimmable, double intensity) {
+    public Bulb(int id, boolean on, String cn, String location, int xPosition, int yPosition, boolean isDimmable, int intensity) {
         this.bulbId = id;
         this.on = on;
         colorName = cn;
@@ -22,6 +22,21 @@ public class Bulb {
         this.intensity = intensity;
     }
 
+
+    public static int bulbIntensity(int bulbId, int intensity) {
+        return bulbId + intensity;
+    }
+
+    //overload
+//    static double bulbIntensity(double intensity) {
+//
+//        if (intensity >= 0 && intensity <= 100) {
+//            return intensity;
+//        } else {
+//            System.out.println("Not a valid number ");
+//        }
+//        return intensity;
+//    }
 
     public int getId() {
         return bulbId;
@@ -63,9 +78,13 @@ public class Bulb {
         on = false;
     }
 
-    public int getxPosition () {return xPosition;}
+    public int getxPosition() {
+        return xPosition;
+    }
 
-    public int getyPosition () {return yPosition;}
+    public int getyPosition() {
+        return yPosition;
+    }
 
     public boolean isDimmable() {
         return isDimmable;
@@ -75,11 +94,11 @@ public class Bulb {
         isDimmable = dimmable;
     }
 
-    public double getIntensity() {
+    public int getIntensity() {
         return intensity;
     }
 
-    public void setIntensity(double intensity, int bulbId) {
+    public void setIntensity(int intensity) {
         this.intensity = intensity;
     }
 
@@ -87,9 +106,7 @@ public class Bulb {
         String result;
         if (on) {
             result = "The " + getcolorName() + " light is on.";
-        }
-
-        else {
+        } else {
             result = "The " + getcolorName() + " light is off.";
 
         }

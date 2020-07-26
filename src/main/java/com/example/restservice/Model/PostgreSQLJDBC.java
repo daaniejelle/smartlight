@@ -8,82 +8,89 @@ public class PostgreSQLJDBC {
     private static final String user = "postgres";
     private static final String password = "banaan007";
 
-    private static ArrayList<Bulb> listOfActors = new ArrayList<Bulb>();
-
-
-    public static Connection connect() throws SQLException {
+    public Connection connect() throws SQLException {
         return DriverManager.getConnection(url, user, password);
     }
 
-    public static int getBulbsCount() {
-        String SQL = "SELECT count(*) FROM lightbulbs";
-        int count = 0;
+    // Set the status and intensity for given bulbId
+    public void updateBulb(int id, boolean on, int intensity){
+        try {
+            Connection conn = connect();
+            String SQL = "UPDATE lightbulbs SET \"on\"=?, intensity=? WHERE id = ?;";
+            PreparedStatement preparedStmt = conn.prepareStatement(SQL);
 
-        try (Connection conn = connect();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(SQL)) {
-            rs.next();
-            count = rs.getInt(1);
+            // inject the parameters into the SQL statement
+            preparedStmt.setInt(3, id);
+            preparedStmt.setBoolean(1, on);
+            preparedStmt.setInt(2, intensity);
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+
+            conn.close();
+        }
+        catch (SQLException ex) {
+            return;
+        }
+    }
+
+    // Get specific bulb from the database
+    public Bulb getBulb(int id) {
+        try {
+            Connection conn = connect();
+            String SQL = "SELECT * FROM lightbulbs where id = ?";
+            PreparedStatement preparedStmt = conn.prepareStatement(SQL);
+
+            // inject the parameters into the SQL statement
+            preparedStmt.setInt(1, id);
+
+            ResultSet rs = preparedStmt.executeQuery();
+            ArrayList<Bulb> bulbs = addBulbs(rs);
+            if (!bulbs.isEmpty()){
+                return bulbs.get(0);
+            }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
 
-        return count;
-    }}
-//
-////    public static void getlightbulbs() {
-////        String SQL = "SELECT bulbid,color, location FROM lightbulbs";
-////
-////        try (Connection conn = connect();
-////             Statement stmt = conn.createStatement();
-////             ResultSet rs = stmt.executeQuery(SQL)) {
-////            // display actor information
-////            addLightbulbs(rs);
-////
-////            for (Actor actor : listOfActors){
-////                actor.print();
-////            }
-//
-////        } catch (SQLException ex) {
-////            System.out.println(ex.getMessage());
-////        }
-////    }
-//
-//////    public static void findActorByID(int actorID) {
-//////        String SQL = "SELECT actor_id,first_name,last_name "
-//////                + "FROM actor "
-//////                + "WHERE actor_id = ?";
-//////
-//////        try (Connection conn = connect();
-//////             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
-//////
-//////            pstmt.setInt(1, actorID);
-//////            ResultSet rs = pstmt.executeQuery();
-//////            addActors(rs);
-//////            listOfActors.get(0).print();
-//////
-//////        } catch (SQLException ex) {
-//////            System.out.println(ex.getMessage());
-//////        }
-//////    }
-////
-////    private static void displayActor(ResultSet rs) throws SQLException {
-////        while (rs.next()) {
-////
-////            System.out.println(rs.getString("actor_id") + "\t"
-////                    + rs.getString("first_name") + "\t"
-////                    + rs.getString("last_name"));
-////        }
-////    }
-////
-////    private static void addActors(ResultSet rs) throws SQLException {
-////        while (rs.next()) {
-////            int id = rs.getInt("actor_id");
-////            String firstName =  rs.getString("first_name");
-////            String lastName = rs.getString("last_name");
-////
-////            Actor actor = new Actor(id, firstName, lastName);
-////            listOfActors.add(actor);
-////        }
-////    }
-////}
+        // When there was an error or the list was empty, return null
+        return null;
+    }
+
+    // Get all bulbs from the database
+    public ArrayList<Bulb> getBulbs() {
+        String SQL = "SELECT * FROM lightbulbs";
+
+        try (Connection conn = connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(SQL)) {
+            return addBulbs(rs);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        // When there was an error, return an empty list
+        return new ArrayList<Bulb>();
+    }
+
+    // create an ArrayList of bulbs from the resultset
+    private ArrayList<Bulb> addBulbs(ResultSet rs) throws SQLException {
+        ArrayList<Bulb> listOfBulbs = new ArrayList<Bulb>();
+
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            boolean on = rs.getBoolean("on");
+            String cn = rs.getString("cn");
+            String location =  rs.getString("location");
+            int xPosition = rs.getInt("xPosition");
+            int yPosition = rs.getInt("yPosition");
+            boolean isDimmable = rs.getBoolean("isDimmable");
+            int intensity = rs.getInt("intensity");
+
+            Bulb bulb = new Bulb(id, on, cn, location, xPosition, yPosition, isDimmable, intensity);
+            listOfBulbs.add(bulb);
+        }
+
+        return listOfBulbs;
+    }
+}

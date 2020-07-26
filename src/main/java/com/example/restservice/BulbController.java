@@ -1,69 +1,53 @@
 package com.example.restservice;
 
 import com.example.restservice.Model.Bulb;
+import com.example.restservice.Model.PostgreSQLJDBC;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
 
 @RestController
 public class BulbController {
 
-    private final Bulb[] bulbs = new Bulb[]{
-            new Bulb(1, true, "white", "slaapkamer", 92, 31, false, 0),
-            new Bulb(2, false, "soft", "slaapkamer", 374, 31, false, 0),
-            new Bulb(3, true, "blue", "trap", 493, 325, false, 0),
-            new Bulb(4, false, "clear", "keuken", 832, 49,false, 0),
-            new Bulb(5, false, "soft white", "wc", 1109, 37, false, 0),
-            new Bulb(6, false, "normal", "douche", 1212, 251, true, 0),
-//            new Bulb(7, false, "onmove", "outside", 606, -71, false, 50),
-            new Bulb(8, true, "dimmable", "outside", 732, -71, false,0),
-            new Bulb(9, false, "dimmable", "outside", 732, -71, true,0),
-
-};
-
-
     @GetMapping("/bulbs")
-    public Bulb[] bulps() {
+    public ArrayList<Bulb> bulps() {
+        // Get all the bulbs from the database
+        PostgreSQLJDBC db = new PostgreSQLJDBC();
+        ArrayList<Bulb> bulbs = db.getBulbs();
         return bulbs;
     }
 
     @GetMapping("/bulbIntensity")
-    public Bulb bulbintensity(int bulbId) {
-        for (Bulb bulb : bulbs) {
-                 if (bulb.getId() == bulbId) {
-                    if (bulb.isDimmable())
-                        return bulbintensity(bulbId);
+    public Bulb bulbintensity(int bulbId, int intensity) {
+        // get the bulb from the database
+        PostgreSQLJDBC db = new PostgreSQLJDBC();
+        Bulb bulb = db.getBulb(bulbId);
 
-                    else
-                    return bulb;
-                }
-            }
-            return null;
-        }
+        // Save the new intensity in the database
+        db.updateBulb(bulb.getId(), bulb.isOn(), intensity);
+        return bulb;
+    }
 
     @GetMapping("/Bulb")
     public Bulb bulb(int bulbId) {
-        for (Bulb bulb : bulbs) {
-            if (bulb.getId() == bulbId) {
-                return bulb;
-            }
-        }
-        return null;
+        PostgreSQLJDBC db = new PostgreSQLJDBC();
+        Bulb bulb = db.getBulb(bulbId);
+        return bulb;
     }
 
     //toggle zet de schakelaar aan of uit op de server
 
     @GetMapping("/setBulb")
     public Bulb toggleBulb(int bulbId) {
-        for (Bulb bulb : bulbs) {
-            if (bulb.getId() == bulbId) {
-                if (bulb.isOff())
-                    bulb.turnOn();
-                else
-                    bulb.turnOff();
+        PostgreSQLJDBC db = new PostgreSQLJDBC();
+        Bulb bulb = db.getBulb(bulbId);
+        if (bulb.isOff())
+            bulb.turnOn();
+        else
+            bulb.turnOff();
 
-                return bulb;
-            }
-        }
-        return null;
+        db.updateBulb(bulb.getId(), bulb.isOn(), bulb.getIntensity());
+        return bulb;
     }
 }
