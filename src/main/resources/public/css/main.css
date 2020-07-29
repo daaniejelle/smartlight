@@ -56,3 +56,27 @@ test:hover {
   90% { transform: translate(1px, 2px) rotate(0deg); }
   100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
+
+//clock
+@font-face {
+  font-family: 'DIGITAL';
+  src: url('https://cssdeck.com/uploads/resources/fonts/digii/DS-DIGII.TTF');
+}
+
+.digital-clock {
+  margin: auto;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 120px;
+  height: 25px;
+  color: #ffffff;
+  border: 2px solid #999;
+  border-radius: 20px;
+  text-align: center;
+  font: 20px/30px 'DIGITAL', Helvetica;
+  background: linear-gradient(90deg, #34495e, #555);
+
+}

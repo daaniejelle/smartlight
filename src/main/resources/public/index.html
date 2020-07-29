@@ -11,6 +11,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="js-source/Main.js"></script>
     <script type="text/javascript" src="js-source/Bulb.js"></script>
+    <script type="text/javascript" src="js-source/Clock.js"></script>
+
 
 </head>
 
@@ -24,19 +26,19 @@
             <li><a href="#"><span class id="Lights">Lights</span></a></li>
             <li><a href="#"><span class id="Sprinkler">Sprinkler</span></a></li>
             <li><a href="#"><span class id="Login">Login</span></a></li>
-            <li><a href="#"><span class id="settings">Settings</span></a></li>
+            <li><a href="#"><div class="digital-clock">00:00:00</div></a></li>
         </ul>
     </div>
 </div>
 <!-- end menu balk-->
 
 <img src="img/img_avatar2.png" alt="Avatar" class="avatar" align="left">
-<!--<p class="name">Goede middag Danielle!</p>-->
 <body onload="greet()"></body>
 <p id="hallo" class="name"></p>
 
+
 <div id="sliderContainer">
-<input type="range" id="slider" min="0" max="100" value="0">
+    <input type="range" id="slider" min="0" max="100" value="0">
 </div>
 
 <div id="floorplanContainer" style="position: relative;">

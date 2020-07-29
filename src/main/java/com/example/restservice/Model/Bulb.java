@@ -1,49 +1,24 @@
 package com.example.restservice.Model;
 
-public class Bulb {
+import com.example.restservice.Superclasses.Light;
 
-    private int bulbId;
+public class Bulb extends Light {
+
     private boolean on;
     private String colorName;
-    private String location;
-    private int xPosition;
-    private int yPosition;
     private boolean isDimmable;
     private int intensity;
 
     public Bulb(int id, boolean on, String cn, String location, int xPosition, int yPosition, boolean isDimmable, int intensity) {
-        this.bulbId = id;
+        super(id, location, xPosition, yPosition);
         this.on = on;
         colorName = cn;
-        this.location = location;
-        this.xPosition = xPosition;
-        this.yPosition = yPosition;
         this.isDimmable = isDimmable;
         this.intensity = intensity;
     }
 
-
-    public static int bulbIntensity(int bulbId, int intensity) {
-        return bulbId + intensity;
-    }
-
-    //overload
-//    static double bulbIntensity(double intensity) {
-//
-//        if (intensity >= 0 && intensity <= 100) {
-//            return intensity;
-//        } else {
-//            System.out.println("Not a valid number ");
-//        }
-//        return intensity;
-//    }
-
-    public int getId() {
-        return bulbId;
-    }
-
-    public void setId(int id) {
-        this.bulbId = id;
+    public static int bulbIntensity(int id, int intensity) {
+        return id + intensity;
     }
 
     public boolean isOn() {
@@ -62,28 +37,12 @@ public class Bulb {
         colorName = cn;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     public void turnOn() {
         on = true;
     }
 
     public void turnOff() {
         on = false;
-    }
-
-    public int getxPosition() {
-        return xPosition;
-    }
-
-    public int getyPosition() {
-        return yPosition;
     }
 
     public boolean isDimmable() {

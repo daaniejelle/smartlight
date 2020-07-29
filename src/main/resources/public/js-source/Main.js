@@ -6,14 +6,16 @@ function greet() {
   var time = new Date().getHours();
   var greeting;
         if (time < 10) {
-        greeting = "Goedemorgen Daan";
+        greeting = "Goedemorgen Daan!";
   } else if (time < 20) {
-        greeting = "Goedemiddag Daan";
+        greeting = "Goedemiddag Daan!";
   } else {
-        greeting ="Goedenavond Daan";
+        greeting ="Goedenavond Daan!";
   }
 document.getElementById("hallo").innerHTML = greeting;
 }
+
+
 
 
 

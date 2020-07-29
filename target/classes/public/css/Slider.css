@@ -1,3 +1,11 @@
+.dimmableBulb {
+    border: 1px solid orange;
+}
+
+.dimmableBulb.selected {
+    border: 2px solid black;
+}
+
 :root {
   --exp:1;
 }
@@ -40,3 +48,10 @@
     outline: none;
     cursor: pointer;
  }
+
+  #sliderContainer {
+      position: absolute;
+      top: 150px;
+      left: 600px;
+
+}
