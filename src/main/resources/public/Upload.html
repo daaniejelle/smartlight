@@ -6,12 +6,9 @@
     <title>My Home</title>
     <link href="/css/Main.css" rel="stylesheet" />
     <link href="/css/Menu.css" rel="stylesheet" />
-    <link href="/css/Bulb.css" rel="stylesheet" />
+    <link href="/css/Slider.css" rel="stylesheet" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-
     <script type="text/javascript" src="js-source/Main.js"></script>
     <script type="text/javascript" src="js-source/Bulb.js"></script>
     <script type="text/javascript" src="js-source/Clock.js"></script>
@@ -25,7 +22,7 @@
 <div id="menu-nav">
     <div id="navigation-bar">
         <ul id ="nav">
-            <li><a href="../index"><span class id="Home">Home</span></a></li>
+            <li><a href="#"><span class id="Home">Home</span></a></li>
             <li><a href="#"><span class id="Lights">Lights</span></a></li>
             <li><a href="/upload"><span class id="Upload">Sprinkler</span></a></li>
             <li><a href="#"><span class id="Login">Login</span></a></li>
@@ -39,22 +36,22 @@
 <body onload="greet()"></body>
 <p id="hallo" class="name"></p>
 
+<p>Klik hier om een image up te loaden</p>
+<input type="file" accept="image/*" onchange="loadFile(event)">
+<img id="output"/>
 
-<div id="draggable" class="ui-widget-content"><img src="img/bulb-off.png">
-</div>
+<p></p><p></p><p></p>
+
 
 <div id="sliderContainer">
     <input type="range" id="slider" min="0" max="100" value="0">
 </div>
 
-<div id="floorplanContainer" style="position: relative;">
-    <img id="floormap" src="img/room.png" usemap="#image-map">
-</div>
 
 <!--start wheater widget-->
 <div id="weather"><a class="weatherwidget-io" href="https://forecast7.com/nl/51d195d99/roermond/" data-label_1=
         "Actueel weer in" data-label_2="Roermond" data-icons="Climacons Animated" data-days="5" data-theme=
-        "mountains" >Roermond Weer</a></div>
+                             "mountains" >Roermond Weer</a></div>
 <!--end wheater widget-->
 
 
@@ -62,3 +59,4 @@
 
 </body>
 </html>
+

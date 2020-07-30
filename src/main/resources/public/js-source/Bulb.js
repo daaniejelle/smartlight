@@ -1,5 +1,4 @@
-//turn the bulb on and off
-//setbulbstatus na function geeft ie aan wat hij moet doen als het antwoord van de server komt
+//turn the bulb on and off action after retrunns from server
 function bulbOnOffHandler(event){
 
     var image = event.target;
@@ -16,6 +15,7 @@ function bulbOnOffHandler(event){
         });
 }
 
+
 function rangeOpacity(event) {
     let slider = event.target;
     let value = slider.value;
@@ -30,7 +30,76 @@ function setOpacity(img, value){
    img.css("opacity", opacity);
 }
 
-//okCode code die uitgevoerd moet worden
+//function change intensity
+function bulbIntensityHandler(event) {
+
+    var name = image.id
+    var intensity = event.target;
+    var value = slider.value;
+
+        var dimmer = setIntensityStatus(value, function (dimmer) {
+    ;
+        if ( lightBulb.on) {
+            change.intensity(bulbId, slider.value);
+        }
+        else {
+            return bulb;
+                    }
+    });
+}
+
+//okCode change intensity
+function setIntensityStatus(intensity, okCode) {
+    let url = new URL("/setBulb", document.baseURI);
+    url.searchParams.append("bulbId", bulbId);
+    // url.searchParams.append("intensity", intensity);
+
+    fetch(url)
+        .then(response => {
+            return response.json();
+        })
+
+        .then(
+            (data) => {
+                okCode(data);
+            },
+            (error) => {
+            });
+}
+
+//function change position
+$(function() {
+    $( "#draggable" ).draggable();
+  });
+
+    // Drag current position of dragged image.
+    drag: function bulbPositionHandler(event, ui) {
+        // Show the current dragged position of image
+        var currentPos = $(this).position();
+        $("div#xpos").text("CURRENT: \nLeft: " + currentPos.left + "\nTop: " + currentPos.top);
+
+    }
+
+//ok code change position
+function setPositionHandler(bulbId, okCode){
+    let url = new URL("/setBulb", document.baseURI);
+    url.searchParams.append("bulbId", bulbId);
+
+    fetch(url)
+        .then(response => {
+            return response.json();
+        })
+
+        .then(
+            (data) => {
+                okCode(data);
+            },
+            (error) => {
+
+            });
+}
+
+//okCode turn lights on or off
 function setBulbStatus(bulbId, okCode){
     let url = new URL("/setBulb", document.baseURI);
     url.searchParams.append("bulbId", bulbId);
@@ -58,7 +127,8 @@ function positionBulbs(){
    fetchBulbs(function(bulbs){
         bulbs.forEach(function(bulb){
             let img = $("<img>");
-            img.attr("id", bulb.id)
+            img.attr("id", bulb.id);
+            let position = $( "#draggable");
 
             if (bulb.dimmable) {
                     // Create an absolute positioned div
@@ -80,7 +150,6 @@ function positionBulbs(){
             		img.css({position: 'absolute', height: 60, width: 60, opacity: 0.5});
                     setOpacity(img, bulb.intensity);
                     div.append(img);
-
                     floorPlan.append(div);
             	}
 
@@ -89,6 +158,7 @@ function positionBulbs(){
                     img.attr("src", lightBulbSrc)
                     img.css({top: bulb.yPosition, left: bulb.xPosition, position:'absolute', height: 60, width: 60});
             		img.on("click", bulbOnOffHandler)
+                    //draggable(newPosition);
                     floorPlan.append(img);
             	}
         });
@@ -108,6 +178,10 @@ function bulbSelectHandler(event){
 	let opacity = lightBulb.css("opacity");
 	let slider = $("#slider");
 	slider.val(opacity * 100);
+
+	let newPosition  = lightBulb.position("newPosition");
+    let currentPos = $(this).position();
+
 }
 
 

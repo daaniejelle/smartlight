@@ -21,6 +21,10 @@ public class Bulb extends Light {
         return id + intensity;
     }
 
+    public static int bulbPosition(int id, int xPosition, int yPosition) {
+        return id + xPosition + yPosition;
+    }
+
     public boolean isOn() {
         return on;
     }
