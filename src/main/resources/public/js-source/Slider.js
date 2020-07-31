@@ -82,9 +82,8 @@ function positionBulbs(){
             		img.addClass("dimmableBulb");
             		img.on("click", bulbSelectHandler);
             		img.css({position: 'absolute', height: 60, width: 60, opacity: 0.5});
-                    setOpacity(img, bulb.intensity);
+            		img.on("click", bul);
                     div.append(img);
-
                     floorPlan.append(div);
             	}
 

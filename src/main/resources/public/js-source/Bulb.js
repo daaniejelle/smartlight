@@ -1,4 +1,4 @@
-//turn the bulb on and off action after retrunns from server
+//turn the bulb on and off action after returns from server
 function bulbOnOffHandler(event){
 
     var image = event.target;
@@ -31,26 +31,17 @@ function setOpacity(img, value){
 }
 
 //function change intensity
-function bulbIntensityHandler(event) {
-
-    var name = image.id
-    var intensity = event.target;
-    var value = slider.value;
-
-        var dimmer = setIntensityStatus(value, function (dimmer) {
-    ;
-        if ( lightBulb.on) {
-            change.intensity(bulbId, slider.value);
-        }
-        else {
-            return bulb;
-                    }
-    });
+function bulbIntensityHandler (value, opacity) {
+	if (lightBulb.dimmable) {
+		img.style.filter = value / 100;
+	} else {
+		lightbulbOff;
+	}
 }
 
 //okCode change intensity
 function setIntensityStatus(intensity, okCode) {
-    let url = new URL("/setBulb", document.baseURI);
+    let url = new URL("/setIntensity", document.baseURI);
     url.searchParams.append("bulbId", bulbId);
     // url.searchParams.append("intensity", intensity);
 
@@ -67,10 +58,11 @@ function setIntensityStatus(intensity, okCode) {
             });
 }
 
-//function change position
+//function draggalbe - chnange position
 $(function() {
     $( "#draggable" ).draggable();
   });
+
 
     // Drag current position of dragged image.
     drag: function bulbPositionHandler(event, ui) {
@@ -80,7 +72,7 @@ $(function() {
 
     }
 
-//ok code change position
+//ok code //function draggalbe - chnange position
 function setPositionHandler(bulbId, okCode){
     let url = new URL("/setBulb", document.baseURI);
     url.searchParams.append("bulbId", bulbId);
@@ -148,7 +140,7 @@ function positionBulbs(){
             		img.addClass("dimmableBulb");
             		img.on("click", bulbSelectHandler);
             		img.css({position: 'absolute', height: 60, width: 60, opacity: 0.5});
-                    setOpacity(img, bulb.intensity);
+                    //img.style.filter(value);
                     div.append(img);
                     floorPlan.append(div);
             	}

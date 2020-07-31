@@ -49,9 +49,8 @@
     cursor: pointer;
  }
 
-  #sliderContainer {
-      position: absolute;
-      top: 150px;
-      left: 600px;
-
-}
+   #sliderContainer {
+       position: absolute;
+       top: 150px;
+       left: 600px;
+ }
