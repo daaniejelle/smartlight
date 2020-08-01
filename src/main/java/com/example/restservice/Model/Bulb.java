@@ -59,16 +59,15 @@ public class Bulb extends Tool {
         this.intensity = intensity;
     }
 
-    public String toString() {
-        String result;
-        if (on) {
-            result = "The " + getcolorName() + " light is on.";
-        } else {
-            result = "The " + getcolorName() + " light is off.";
+//    public String toString() {
+//        String result;
+//        if (on) {
+//            result = "The " + getcolorName() + " light is on.";
+//        } else {
+//            result = "The " + getcolorName() + " light is off.";
+//
+//        }
+//
+//        return result;
 
-        }
-
-        return result;
-
-    }
 }

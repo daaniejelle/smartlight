@@ -45,6 +45,5 @@ public class LightSensor extends Bulb {
         else {
             return bulbIntensity(7, 0);
         }
-
     }
 }

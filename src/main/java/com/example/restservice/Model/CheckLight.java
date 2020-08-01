@@ -29,6 +29,7 @@ public class CheckLight {
     public CheckLight(boolean light) {
         isLit = light;
     }
+
     public void turnOn() {
         isLit = true;
     }

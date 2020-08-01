@@ -1,4 +1,3 @@
-//turn the bulb on and off action after returns from server
 function bulbOnOffHandler(event) {
 
     var image = event.target;
@@ -15,35 +14,30 @@ function bulbOnOffHandler(event) {
     });
 }
 
-
 function rangeOpacity(event) {
     let slider = event.target;
     let value = slider.value;
     let bulb = $(".dimmableBulb.selected");
     setOpacity(bulb, value);
+
+    let bulbId = bulb.attr("id");
+    setIntensityStatus(bulbId, value, function () {
+        //DoNothing
+    });
 }
 
 // value = 0 - 100
-function setOpacity(img, value) {
+function setOpacity(bulb, value) {
     // Opacity is 0.0 - 1;
     let opacity = value / 100;
-    img.css("opacity", opacity);
-}
-
-//function change intensity
-function bulbIntensityHandler(value, opacity) {
-    if (lightBulb.dimmable) {
-        img.style.filter = value / 100;
-    } else {
-        lightbulbOff;
-    }
+    bulb.css("opacity", opacity);
 }
 
 //okCode change intensity
-function setIntensityStatus(intensity, okCode) {
-    let url = new URL("/setIntensity", document.baseURI);
+function setIntensityStatus(bulbId, intensity, okCode) {
+    let url = new URL("/bulbIntensity", document.baseURI);
     url.searchParams.append("bulbId", bulbId);
-    // url.searchParams.append("intensity", intensity);
+    url.searchParams.append("intensity", intensity);
 
     fetch(url)
         .then(response => {
@@ -106,7 +100,6 @@ function setBulbStatus(bulbId, okCode) {
                 okCode(data);
             },
             (error) => {
-                // console.error(error);
             });
 }
 
@@ -139,7 +132,7 @@ function positionBulbs() {
                 img.attr("src", lightbulbOn)
                 img.addClass("dimmableBulb");
                 img.on("click", bulbSelectHandler);
-                img.css({ position: 'absolute', height: 60, width: 60, opacity: 0.5 });
+                img.css({ position: 'absolute', height: 60, width: 60, opacity: bulb.intensity });
                 //img.style.filter(value);
                 div.append(img);
                 floorPlan.append(div);
@@ -176,7 +169,6 @@ function bulbSelectHandler(event) {
 
 }
 
-
 function fetchBulbs(okCode) {
     let url = new URL("/bulbs", document.baseURI);
 
@@ -192,7 +184,7 @@ function fetchBulbs(okCode) {
             });
 }
 
-//deze code wordt uitgevoerd als de hele pagina geladen is
+//This code will be executed after the complete page has been loaded
 $(document).ready(function () {
     positionBulbs();
     $("#slider").on("input", rangeOpacity)

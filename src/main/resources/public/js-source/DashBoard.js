@@ -108,5 +108,4 @@ function updateBulb() {
     }
 };
 
-
 $(document).ready(intialize);
