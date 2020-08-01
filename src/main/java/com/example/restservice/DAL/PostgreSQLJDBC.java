@@ -1,4 +1,6 @@
-package com.example.restservice.Model;
+package com.example.restservice.DAL;
+
+import com.example.restservice.Model.Bulb;
 
 import java.sql.*;
 import java.util.ArrayList;

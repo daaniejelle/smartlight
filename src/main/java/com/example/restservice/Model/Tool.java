@@ -1,13 +1,13 @@
-package com.example.restservice.Superclasses;
+package com.example.restservice.Model;
 
-public class Light {
+public class Tool {
 
     private int id;
     private String location;
     private int xPosition;
     private int yPosition;
 
-    public Light(int id, String location, int xPosition, int yPosition) {
+    public Tool(int id, String location, int xPosition, int yPosition) {
         this.id = id;
         this.location = location;
         this.xPosition = xPosition;

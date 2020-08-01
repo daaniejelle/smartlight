@@ -1,8 +1,6 @@
 package com.example.restservice.Model;
 
-import com.example.restservice.Superclasses.Light;
-
-public class MovementSensor extends Light {
+public class MovementSensor extends Tool {
 
     private String movement;
 

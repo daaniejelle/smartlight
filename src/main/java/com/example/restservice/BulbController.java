@@ -1,7 +1,7 @@
 package com.example.restservice;
 
 import com.example.restservice.Model.Bulb;
-import com.example.restservice.Model.PostgreSQLJDBC;
+import com.example.restservice.DAL.PostgreSQLJDBC;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

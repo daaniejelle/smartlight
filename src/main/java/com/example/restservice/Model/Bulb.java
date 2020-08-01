@@ -1,8 +1,6 @@
 package com.example.restservice.Model;
 
-import com.example.restservice.Superclasses.Light;
-
-public class Bulb extends Light {
+public class Bulb extends Tool {
 
     private boolean on;
     private String colorName;
