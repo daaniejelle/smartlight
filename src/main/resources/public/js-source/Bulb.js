@@ -1,4 +1,4 @@
-//turn the bulb on and off action after returns from server
+//turn the bulb on and off
 function bulbOnOffHandler(event) {
 
     var image = event.target;
@@ -11,39 +11,57 @@ function bulbOnOffHandler(event) {
         else {
             image.src = 'img/bulb-off.png';
         }
-
     });
 }
 
+//okCode turn lights on or off
+function setBulbStatus(bulbId, okCode) {
+    let url = new URL("/setBulb", document.baseURI);
+    url.searchParams.append("bulbId", bulbId);
+
+    fetch(url)
+        .then(response => {
+            return response.json();
+        })
+
+        .then(
+            (data) => {
+                okCode(data);
+            },
+            (error) => {
+            });
+}
+
+// change intensity
 var refreshIntervalId = null;
 
-function rangeOpacity(event) {
+function rangeIntensity(event) {
     let bulb = $(".dimmableBulb.selected");
 
     // Check if a bulb is selected
-    if (bulb.length != 0){
+    if (bulb.length != 0) {
         let slider = event.target;
         let value = slider.value;
         setOpacity(bulb, value);
 
         // Prevent the current timer to timeout (when existing)
-        if (refreshIntervalId != null){
+        if (refreshIntervalId != null) {
             clearTimeout(refreshIntervalId);
         }
 
         // Start a new timer and execute the code when it expires
-        refreshIntervalId = setTimeout(function() {
+        refreshIntervalId = setTimeout(function () {
             let bulbId = bulb.attr("id");
-            setIntensityStatus(bulbId, value, function() {
+            setIntensityStatus(bulbId, value, function () {
                 //DoNothing
             });
         }, 200);
     }
 }
 
-// value = 0 - 100
 function setOpacity(bulb, value) {
     // Opacity is 0.0 - 1;
+    // value = 0 - 100
     let opacity = value / 100;
     bulb.css("opacity", opacity);
 }
@@ -67,32 +85,11 @@ function setIntensityStatus(bulbId, intensity, okCode) {
             });
 }
 
-
-//okCode turn lights on or off
-function setBulbStatus(bulbId, okCode) {
-    let url = new URL("/setBulb", document.baseURI);
-    url.searchParams.append("bulbId", bulbId);
-
-    fetch(url)
-        .then(response => {
-            return response.json();
-        })
-
-        .then(
-            (data) => {
-                okCode(data);
-            },
-            (error) => {
-                // console.error(error);
-            });
-}
-
 function positionBulbs() {
     let floorPlan = $("#floorplanContainer")
     let lightbulbOff = "img/bulb-off.png";
     let lightbulbOn = "img/bulb-on.png";
 
-    //functie wordt uitgevoerd als de respons van de server komt
     fetchBulbs(function (bulbs) {
         bulbs.forEach(function (bulb) {
             let img = $("<img>");
@@ -125,7 +122,6 @@ function positionBulbs() {
                 img.attr("src", lightBulbSrc)
                 img.css({ top: bulb.yPosition, left: bulb.xPosition, position: 'absolute', height: 60, width: 60 });
                 img.on("click", bulbOnOffHandler)
-                //draggable(newPosition);
                 floorPlan.append(img);
             }
         });
@@ -148,9 +144,7 @@ function bulbSelectHandler(event) {
 
     let newPosition = lightBulb.position("newPosition");
     let currentPos = $(this).position();
-
 }
-
 
 function fetchBulbs(okCode) {
     let url = new URL("/bulbs", document.baseURI);
@@ -167,8 +161,7 @@ function fetchBulbs(okCode) {
             });
 }
 
-//deze code wordt uitgevoerd als de hele pagina geladen is
 $(document).ready(function () {
     positionBulbs();
-    $("#slider").on("input", rangeOpacity)
+    $("#slider").on("input", rangeIntensity)
 });

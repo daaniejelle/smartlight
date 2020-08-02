@@ -15,7 +15,7 @@ public class PostgreSQLJDBC {
     }
 
     // Set the status and intensity for given bulbId
-    public void updateBulb(int id, boolean on, int intensity){
+    public void updateBulb(int id, boolean on, int intensity) {
         try {
             Connection conn = connect();
             String SQL = "UPDATE lightbulbs SET \"on\"=?, intensity=? WHERE id = ?;";
@@ -30,8 +30,7 @@ public class PostgreSQLJDBC {
             preparedStmt.execute();
 
             conn.close();
-        }
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             return;
         }
     }
@@ -48,7 +47,7 @@ public class PostgreSQLJDBC {
 
             ResultSet rs = preparedStmt.executeQuery();
             ArrayList<Bulb> bulbs = addBulbs(rs);
-            if (!bulbs.isEmpty()){
+            if (!bulbs.isEmpty()) {
                 return bulbs.get(0);
             }
         } catch (SQLException ex) {
@@ -83,7 +82,7 @@ public class PostgreSQLJDBC {
             int id = rs.getInt("id");
             boolean on = rs.getBoolean("on");
             String cn = rs.getString("cn");
-            String location =  rs.getString("location");
+            String location = rs.getString("location");
             int xPosition = rs.getInt("xPosition");
             int yPosition = rs.getInt("yPosition");
             boolean isDimmable = rs.getBoolean("isDimmable");
@@ -94,5 +93,28 @@ public class PostgreSQLJDBC {
         }
 
         return listOfBulbs;
+    }
+
+    public void addBulb(int id, String location, int xPosition, int yPosition, boolean isDimmable) {
+        try {
+            Connection conn = connect();
+            String SQL = "INSERT INTO lightbulbs(id, location,xPosition, xPosition, isDimmable ) VALUES (?,?,?,?,?)";
+            PreparedStatement preparedStmt = conn.prepareStatement(SQL);
+
+            // inject the parameters into the SQL statement
+            preparedStmt.setInt(1, id);
+            preparedStmt.setString(2, location);
+            preparedStmt.setInt(3, xPosition);
+            preparedStmt.setInt(3, yPosition);
+            preparedStmt.setBoolean(3, isDimmable);
+
+
+            // execute the preparedstatement
+            preparedStmt.execute();
+
+            conn.close();
+        } catch (SQLException ex) {
+            return;
+        }
     }
 }

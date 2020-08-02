@@ -1,8 +1,12 @@
+body {
+    background: #34495e;
+    font: normal 300 16px "Roboto", sans-serif;
+}
+
 .name {
-    font-size: initial0px;
-    color: antiquewhite;
+    color: white;
     text-indent: 15px;
-    margin: 40px 25px 40px 50px;
+    margin: 40px 25px 60px 50px;
     padding: 0px;
 }
 

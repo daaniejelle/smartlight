@@ -5,9 +5,6 @@ function intialize() {
     bulbId.on("change", bulbIdChanged);
 
     intializeBulbSelect();
-
-    var updateButton = $("#update");
-    updateButton.on("click", updateBulb);
 }
 
 function bulbIdChanged(event) {
@@ -48,9 +45,6 @@ function selectCorrectBulb(id) {
     // synchronize the select
     var bulbSelect = $("#bulbId");
     bulbSelect.val(id);
-
-    $("button").removeClass("selected");
-    $("button[value='" + id + "']").addClass("selected")
 }
 
 function intializeBulbSelect(selectedId) {
@@ -69,8 +63,6 @@ function intializeBulbSelect(selectedId) {
                 selectedBulb = bulb;
             }
             bulbSelect.append(option);
-
-            createButton(bulb.id, bulb.fullName, selectedId);
         });
 
         fillBulb(selectedBulb);
@@ -78,34 +70,5 @@ function intializeBulbSelect(selectedId) {
 
     $.getJSON(url, null, success);
 }
-
-function createButton(id, location, selectedId) {
-    // Remove the old button if present
-    $("button[value='" + id + "']").remove();
-
-    var button = $("<button>");
-    button.attr("value", id);
-    button.text(location);
-
-    if (selectedId == id) {
-        button.addClass("selected");
-    }
-
-    $("body").append(button);
-    button.on("click", bulbIdChanged);
-}
-
-function updateBulb() {
-    var url = "/updateBulb";
-    var id = $("#id").val();
-    //    var location = $("#location").text();
-    var colorName = $("#colorName").val();
-    //   var cn = $("#cn").val();
-
-    var parameters = {
-        id: id,
-        colorName: colorName,
-    }
-};
 
 $(document).ready(intialize);

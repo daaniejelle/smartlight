@@ -23,21 +23,17 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes>
-      <connection connection-id="c07dd913-c740-48e5-a489-396070db8b2a">
-        <schema name="public" object-types="view, table" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="ff5bf74c-b21c-4301-b4c1-2a74d4dcc9ff">
       <console name="Connection" type="STANDARD" schema="information_schema" session="Main" />
     </connection>
     <connection id="c07dd913-c740-48e5-a489-396070db8b2a">
-      <console name="Bulbs" type="STANDARD" schema="public" session="Main">select
-    l.&quot;id&quot;
+      <console name="Bulbs" type="STANDARD" schema="public" session="Main"><![CDATA[select
+    l."id"
 from
-    lightbulbs l;</console>
+    lightbulbs l;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">

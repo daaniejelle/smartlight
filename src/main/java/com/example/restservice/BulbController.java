@@ -36,10 +36,9 @@ public class BulbController {
         return bulb;
     }
 
-    //toggle zet de schakelaar aan of uit op de server
-
     @GetMapping("/setBulb")
     public Bulb toggleBulb(int bulbId) {
+        // get the bulb from the database
         PostgreSQLJDBC db = new PostgreSQLJDBC();
         Bulb bulb = db.getBulb(bulbId);
         if (bulb.isOff())
@@ -47,6 +46,7 @@ public class BulbController {
         else
             bulb.turnOff();
 
+        // Save the new toggle in the database
         db.updateBulb(bulb.getId(), bulb.isOn(), bulb.getIntensity());
         return bulb;
     }
