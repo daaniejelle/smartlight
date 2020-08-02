@@ -1,3 +1,4 @@
+//turn the bulb on and off action after returns from server
 function bulbOnOffHandler(event) {
 
     var image = event.target;
@@ -14,16 +15,30 @@ function bulbOnOffHandler(event) {
     });
 }
 
-function rangeOpacity(event) {
-    let slider = event.target;
-    let value = slider.value;
-    let bulb = $(".dimmableBulb.selected");
-    setOpacity(bulb, value);
+var refreshIntervalId = null;
 
-    let bulbId = bulb.attr("id");
-    setIntensityStatus(bulbId, value, function () {
-        //DoNothing
-    });
+function rangeOpacity(event) {
+    let bulb = $(".dimmableBulb.selected");
+
+    // Check if a bulb is selected
+    if (bulb.length != 0){
+        let slider = event.target;
+        let value = slider.value;
+        setOpacity(bulb, value);
+
+        // Prevent the current timer to timeout (when existing)
+        if (refreshIntervalId != null){
+            clearTimeout(refreshIntervalId);
+        }
+
+        // Start a new timer and execute the code when it expires
+        refreshIntervalId = setTimeout(function() {
+            let bulbId = bulb.attr("id");
+            setIntensityStatus(bulbId, value, function() {
+                //DoNothing
+            });
+        }, 200);
+    }
 }
 
 // value = 0 - 100
@@ -52,38 +67,6 @@ function setIntensityStatus(bulbId, intensity, okCode) {
             });
 }
 
-//function draggalbe - chnange position
-$(function () {
-    $("#draggable").draggable();
-});
-
-
-// Drag current position of dragged image.
-drag: function bulbPositionHandler(event, ui) {
-    // Show the current dragged position of image
-    var currentPos = $(this).position();
-    $("div#xpos").text("CURRENT: \nLeft: " + currentPos.left + "\nTop: " + currentPos.top);
-
-}
-
-//ok code //function draggalbe - chnange position
-function setPositionHandler(bulbId, okCode) {
-    let url = new URL("/setBulb", document.baseURI);
-    url.searchParams.append("bulbId", bulbId);
-
-    fetch(url)
-        .then(response => {
-            return response.json();
-        })
-
-        .then(
-            (data) => {
-                okCode(data);
-            },
-            (error) => {
-
-            });
-}
 
 //okCode turn lights on or off
 function setBulbStatus(bulbId, okCode) {
@@ -100,6 +83,7 @@ function setBulbStatus(bulbId, okCode) {
                 okCode(data);
             },
             (error) => {
+                // console.error(error);
             });
 }
 
@@ -113,7 +97,6 @@ function positionBulbs() {
         bulbs.forEach(function (bulb) {
             let img = $("<img>");
             img.attr("id", bulb.id);
-            let position = $("#draggable");
 
             if (bulb.dimmable) {
                 // Create an absolute positioned div
@@ -132,8 +115,7 @@ function positionBulbs() {
                 img.attr("src", lightbulbOn)
                 img.addClass("dimmableBulb");
                 img.on("click", bulbSelectHandler);
-                img.css({ position: 'absolute', height: 60, width: 60, opacity: bulb.intensity });
-                //img.style.filter(value);
+                img.css({ position: 'absolute', height: 60, width: 60, opacity: bulb.intensity + "%" });
                 div.append(img);
                 floorPlan.append(div);
             }
@@ -169,6 +151,7 @@ function bulbSelectHandler(event) {
 
 }
 
+
 function fetchBulbs(okCode) {
     let url = new URL("/bulbs", document.baseURI);
 
@@ -184,7 +167,7 @@ function fetchBulbs(okCode) {
             });
 }
 
-//This code will be executed after the complete page has been loaded
+//deze code wordt uitgevoerd als de hele pagina geladen is
 $(document).ready(function () {
     positionBulbs();
     $("#slider").on("input", rangeOpacity)

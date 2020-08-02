@@ -25,8 +25,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="c07dd913-c740-48e5-a489-396070db8b2a">
-        <schema name="pg_catalog" object-types="function" />
-        <schema name="public" object-types="index, column, table, view, sequence, constraint, function, dataset trigger" />
+        <schema name="public" object-types="view, table" />
       </connection>
     </loaded-nodes>
   </component>
@@ -35,10 +34,10 @@
       <console name="Connection" type="STANDARD" schema="information_schema" session="Main" />
     </connection>
     <connection id="c07dd913-c740-48e5-a489-396070db8b2a">
-      <console name="Bulbs" type="STANDARD" schema="public" session="Main"><![CDATA[select
-    l."id"
+      <console name="Bulbs" type="STANDARD" schema="public" session="Main">select
+    l.&quot;id&quot;
 from
-    lightbulbs l;]]></console>
+    lightbulbs l;</console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">

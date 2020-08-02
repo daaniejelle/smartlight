@@ -94,17 +94,17 @@ function createButton(id, location, selectedId) {
     $("body").append(button);
     button.on("click", bulbIdChanged);
 }
+
 function updateBulb() {
     var url = "/updateBulb";
     var id = $("#id").val();
     //    var location = $("#location").text();
-    var location = $("#colorName").val();
+    var colorName = $("#colorName").val();
     //   var cn = $("#cn").val();
 
     var parameters = {
         id: id,
-        location: location,
-        //     cn : cn,
+        colorName: colorName,
     }
 };
 

@@ -29,18 +29,6 @@ public class BulbController {
         return bulb;
     }
 
-//    @GetMapping("/bulbPostion")
-//    public Bulb bulbPosition(int bulbId, int xPosition, int yPosition) {
-//        // get the bulb from the database
-//        PostgreSQLJDBC db = new PostgreSQLJDBC();
-//        Bulb bulb = db.getBulb(bulbId);
-//
-//        // Save the new position in the database
-//        db.updateBulb(bulb.getId(), bulb.isOn(), bulb.getxPosition());
-//        db.updateBulb(bulb.getId(), bulb.isOn(), bulb.getyPosition());
-//        return bulb;
-//    }
-
     @GetMapping("/Bulb")
     public Bulb bulb(int bulbId) {
         PostgreSQLJDBC db = new PostgreSQLJDBC();
@@ -61,13 +49,5 @@ public class BulbController {
 
         db.updateBulb(bulb.getId(), bulb.isOn(), bulb.getIntensity());
         return bulb;
-    }
-
-    @GetMapping("/updateBulb")
-    public ArrayList<Bulb> setBulp() {
-        // update all the bulbs from the database
-        PostgreSQLJDBC db = new PostgreSQLJDBC();
-        ArrayList<Bulb> bulbs = db.getBulbs();
-        return bulbs;
     }
 }
