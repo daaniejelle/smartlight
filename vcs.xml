@@ -6,7 +6,12 @@
           <option name="url" value="http://github.com" />
           <option name="userName" value="danielle.mertens@novi-education.nl" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/daaniejelle/GIT4" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
+    <option name="cloneParentDir" value="C:\Users\danie\Desktop\JavaMVC-master" />
   </component>
 </application>
