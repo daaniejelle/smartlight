@@ -3,6 +3,7 @@
     <extensionMap>
       <mapping pattern="registration-done.jsp" type="PLAIN_TEXT" />
       <mapping pattern="registration-done" type="PLAIN_TEXT" />
+      <mapping pattern="Time.html" type="PLAIN_TEXT" />
     </extensionMap>
   </component>
 </application>
